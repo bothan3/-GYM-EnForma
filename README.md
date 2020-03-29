@@ -27,7 +27,7 @@ Página web de un gimnasio donde cualquier usuario puede entrar para tener infor
 
 ### ENTIDADES PRINCIPALES
 
-* **Usuario:** Entidd encargada de todas los datos y operaciones del usuario del gimnasio
+* **Usuario:** Entidad encargada de todas los datos y operaciones del usuario del gimnasio
 * **Centro:** Entidad que contiene información del centro, actividades y usuarios de cada centro.
 * **Clase:** Entidad que contiene nombre, hora, aforo, ...
 * **Administrador:** Entidad encargada de la gestión de usuario, centro, clase, ...
@@ -41,4 +41,4 @@ Página web de un gimnasio donde cualquier usuario puede entrar para tener infor
 
 * **Nombre:** Iván Murillo Expósito
 * **Correo:**<i.murillo@alumnos.urjc.es>
-* **GitHub:** <https://github.com/bothan3/GymCrossUrjc.git>
+* **GitHub:** <https://github.com/bothan3/-GYM-EnForma.git>
