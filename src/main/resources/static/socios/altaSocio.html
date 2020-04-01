@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Alta Socio</title>
+<link href="/css/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+		<h1 align="center">ALTA SOCIO</h1>
+		<form class="formulario" action="/socios/alta" method="post">
+			<fieldset>
+				<legend>Alta en el servicio</legend>
+				<div>
+					<label for="nombre">Nombre: </label> 
+					<input type="text" name="nombre" required/>
+				</div>
+				<div>
+					<label for="apellido1">Primer apellido: </label> 
+					<input type="text"	name="apellido1" required/>
+				</div>
+				<div>
+					<label for="apellido2">Segundo apellido: </label> 
+					<input type="text" name="apellido2" required/>
+				</div>
+				<div>
+					<label for="dni">DNI (con letra): </label> 
+					<input type="text" name="dni" maxlength="9" required/>
+				</div>
+				<div>
+					<label for="correo">Dirección de correo: </label> 
+					<input type="email" name="correo" required/>
+				</div>
+				
+				<div display=inline-block>
+					<input class ='botom2' type="submit" value='Enviar' "/> 
+					<input class ='botom2' type="reset"	value="Borrar">
+				</div>
+			</fieldset>
+		</form>
+		<div class="contenedorVolver">
+			<input class=botom1 type="button" onclick="history.back()" name="volver atrás" value="VOLVER">
+		</div>
+</body>
+</html>

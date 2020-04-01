@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/css/styleTablon.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div id="tablon">
+		<div id="titulo">
+			<h1>{{noticia.titulo}}</h1>
+		</div>
+		<div id="noticia">
+			<p>{{noticia.texto}}</p>
+			
+			<h2>Comentarios: </h2>
+					
+			{{#comentarios}}
+			<p>AUTOR: {{autor}}<p>
+			<p>{{mensaje}}</p>
+			{{/comentarios}}
+		</div>
+		
+	</div>
+</body>
+</html>

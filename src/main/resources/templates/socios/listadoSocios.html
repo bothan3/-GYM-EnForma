@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Listado socios</title>
+	<link href="/css/style.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet"	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script type="text/javascript" src="/js/functions.js"></script>
+</head>
+<body>
+	<div class="marco">
+		<h1 align="center">Listado de todos los socios</h1>
+
+		<div class="contenedorWeb">
+			<table>
+				<thead>
+					<tr>
+						<th>Nº SOCIO</th>
+						<th>NOMBRE</th>
+						<th>PRIMER APELLIDO</th>
+						<th>SEGUNDO APELLIDO</th>
+						<th>DNI</th>
+						<th>CORREO</th>
+						<th>PROFESOR ASIGNADO</th>
+						<th>ACCIONES</th>
+						<th>OTRAS OPERACIONES</th>
+					</tr>
+				</thead>
+				{{#socios}}
+				<tbody>
+					<tr>
+						<td>{{id}}</td>
+						<td>{{nombre}}</td>
+						<td>{{apellido1}}</td>
+						<td>{{apellido2}}</td>
+						<td>{{dni}}</td>
+						<td>{{correo}}</td>
+						<td>{{#profeosrAsignado}}{{profesor}}{{/profeosrAsignado}}</td>
+						<td>
+							<span class="editar" onclick="transformarEnEditable(this,'socios')"><i class="material-icons">border_color</i></span>
+							<a href="borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
+						</td>
+						<td>
+							<select name="forma" onchange="location = this.value;">
+									<option value="">Acción a realizar..</option>
+									<option value="asignarProfesor/{{id}}">Asignar profesor</option>
+							</select>
+						</td>
+					</tr>
+					{{/socios}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="contendorEdicion" id="contenedorForm">
+	</div>
+	<div class="contenedorVolver">
+		<input class="botom1" type="button" onclick="window.location.href='/socios/filtros.html'" name="volver atrás" value="VOLVER">
+	</divclass>
+</body>
+</html>

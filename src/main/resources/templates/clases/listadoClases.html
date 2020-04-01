@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF8">
+	<title>Listado clases</title>
+	<link href="/css/style.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script type="text/javascript" src="/js/functions.js"></script>
+	
+		
+</head>
+<body>
+	<div class="marco">
+		<h1 align="center">Listado de las clases</h1>
+
+		<div class="contenedorWeb">
+			<table>
+				<thead>
+					<tr>
+						<th>ID CLASE</th>						
+						<th>TIPO</th>
+						<th>DIA</th>
+						<th>DURACIÓN</th>
+						<th>INTENSIDAD</th>
+						<th>PROFESOR</th>
+						<th>INSCRITOS</th>
+						<th>ACCIONES</th>
+						<th>OTRAS OPERACIONES</th>
+					</tr>
+				</thead>
+				{{#clases}}
+
+				<tbody>
+					<tr>
+						<td>{{id}}</td>
+						<td>{{tipo}}</td>
+						<td>{{fecha}}</td>
+						<td>{{duracion}}</td>
+						<td>{{intensidad}}</td>
+						<td>{{#profeosorAsignado}}{{profesor}}{{/profeosorAsignado}}</td>
+						<td>{{socios}}</td>
+						
+						<td>
+							<span class="editar" onclick="transformarEnEditableClase(this, 'clases')"><i class="material-icons">border_color</i></span>
+							<a href="borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
+						</td>
+						<td>
+							<select name="forma" onchange="location = this.value;">
+									<option value="">Acción a realizar..</option>
+									<option value="asignarProfesor/{{id}}">Asignar profesor</option>
+									<option value="eliminarProfesor/{{id}}">Eliminar profesor</option>
+									
+									
+							</select>
+						</td>
+					</tr>
+					{{/clases}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="contendorEdicion" id="contenedorForm">
+	</div>
+	<div class="contenedorVolver">
+		<input class="botom1" type="button" onclick="window.location.href='/clases/filtros.html'" name="volver atrás" value="VOLVER">
+	</divclass>
+</body>
+</html>

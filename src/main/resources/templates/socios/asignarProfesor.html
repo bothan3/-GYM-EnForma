@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Listado Profesores</title>
+	<link href="/css/style.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script type="text/javascript" src="/js/functions.js"></script>
+</head>
+<body>
+	<div class="marco">
+		<h1 align="center">Listado de todos los profesores</h1>
+
+		<div class="contenedorWeb">
+			<table>
+				<thead>
+					<tr>
+						<th>NOMBRE</th>
+						<th>PRIMER APELLIDO</th>
+						<th>ACCIONES</th>
+					</tr>
+				</thead>
+				{{#Profesores}}
+
+				<tbody>
+					<tr>
+						<td>{{nombre}}</td>
+						<td>{{apellido1}}</td>
+						<td>
+							<form action="/socios/asignarProfesor" method="post">
+								<input type="hidden" name="idProfesor" value="{{id}}">
+								<input type="hidden" name="idSocio" value="{{socio.id}}">
+								<button class="buttomIcon" type="submit" style="font-size:24px"> <i style="color:#5FBF21" class="material-icons">check_circle</i></button>
+							</form>
+							<a href="asignarProfesor/{{id}}{{socio.id}}" style="color:#5FBF21"></span>
+						</td>
+
+					</tr>
+					{{/Profesores}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="contendorEdicion" id="contenedorForm">
+	</div>
+	<div class="contenedorVolver">
+		<input class="botom1" type="button" onclick="window.location.href='/profesores/profesores.html'" name="volver atrás" value="VOLVER">
+	</divclass>
+
+</body>
+</html>

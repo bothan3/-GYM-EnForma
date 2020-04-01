@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Busqueda</title>
+<link href="/css/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div class="marco">
+		<h1 align="center">BUSQUEDA POR CRITERIO</h1>
+		<div class="contenedorWeb">
+			<table>
+				<tr>
+					<td><a href="listadoProfesores">1) LISTADO COMPLETO</a></td>
+				</tr>
+				<tr>
+					<td>
+						<p>2) BUSQUEDA POR NOMBRE: </p> 
+						<form  action="/profesores/busquedaPersonalizada" method="post">
+							<input type="text" name="palabra">		
+							<input type="hidden" name="tipo" value="1">			
+							<input  type="submit" value='Buscar'/> 
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>3) BUSQUEDA POR APELLIDO: </p> 
+						<form  action="/profesores/busquedaPersonalizada" method="post">
+							<input type="text" name="palabra">		
+							<input type="hidden" name="tipo" value="2">			
+							<input  type="submit" value='Buscar'/> 
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>4) BUSQUEDA POR DNI: </p> 
+						<form  action="/profesores/busquedaPersonalizada" method="post">
+							<input type="text" name="palabra">		
+							<input type="hidden" name="tipo" value="3">			
+							<input  type="submit" value='Buscar'/> 
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="contenedorVolver">
+		<input class=botom1 type="button" onclick="window.location.href='/profesores/profesores.html'" name="volver atrás" value="VOLVER">
+	</divclass>
+</body>
+</html>

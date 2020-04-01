@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/css/styleTablon.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div id="blog">
+		<div id="titulo_blog">
+			<h1>TABLON DE NOTICIAS PONTE EN FORMA</h1>
+		</div>
+		<div id="arituclos">
+			{{#noticias}}
+			<h2><a href="noticia/{{id}}">{{titulo}}</a></h2>
+			<p>{{texto}}
+			{{/noticias}}
+		</div>
+		
+	</div>
+</body>
+</html>

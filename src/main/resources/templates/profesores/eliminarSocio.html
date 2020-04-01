@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Lista socios</title>
+	<link href="/css/style.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script type="text/javascript" src="/js/functions.js"></script>
+</head>
+<body>
+	<div class="marco">
+		<h1 align="center">Listado socios asignados</h1>
+
+		<div class="contenedorWeb">
+			<table>
+				<thead>
+					<tr>
+						<th>NOMBRE</th>
+						<th>PRIMER APELLIDO</th>
+						<th>ACCIONES</th>
+					</tr>
+				</thead>
+				{{#socios}}
+				<tbody>
+					<tr>
+						<td>{{nombre}}</td>
+						<td>{{apellido1}}</td>
+						<td>
+							<form action="/profesores/eliminarSocio" method="post">
+								<input type="hidden" name="idSocio" value="{{id}}">
+								<input type="hidden" name="idProfesor" value="{{profesor.id}}">
+								<button class="buttomIcon" type="submit" style="font-size:24px"> <i style="color:#A73D26" class="material-icons">highlight_off</i></button>
+							</form>
+							<a href="eliminarSocio/{{id}}{{profesor.id}}" style="color:#5FBF21"></span>
+						</td>
+
+					</tr>
+					{{/socios}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="contenedorVolver">
+		<input class="botom1" type="button" onclick="window.location.href='/socios/socio.html'" name="volver atrás" value="VOLVER">
+	</divclass>
+
+</body>
+</html>
