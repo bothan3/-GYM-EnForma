@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF8">
+	<title>Listado clases</title>
+	<link href="/css/style.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script type="text/javascript" src="/js/functions.js"></script>
+	
+		
+</head>
+<body>
+	<div class="marco">
+		<h1 align="center">Listado de las clases</h1>
+
+		<div class="contenedorWeb">
+			<table>
+				<thead>
+					<tr>
+						<th>TIPO</th>
+						<th>DIA</th>
+						<th>DURACIÓN</th>
+						<th>INTENSIDAD</th>
+						<th>PROFESOR</th>
+						<th>INSCRITOS</th>
+						<th>OTRAS OPERACIONES</th>
+					</tr>
+				</thead>
+				{{#clases}}
+
+				<tbody>
+					<tr>
+						<td>{{tipo}}</td>
+						<td>{{fecha}}</td>
+						<td>{{duracion}}</td>
+						<td>{{intensidad}}</td>
+						<td>{{profesor}}</td>
+						<td>{{socios}}</td>
+						
+						<td>
+							<span class="editar" onclick="transformarEnEditable(this, 'profesores')"><i class="material-icons">border_color</i></span>
+							<a href="borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
+						</td>
+						<td>
+							<select name="forma" onchange="location = this.value;">
+									<option value="">Acción a realizar..</option>
+							</select>
+						</td>
+					</tr>
+					{{/clases}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="contendorEdicion" id="contenedorForm">
+	</div>
+	<div class="contenedorVolver">
+		<input class="botom1" type="button" onclick="window.location.href='/clases/clases.html'" name="volver atrás" value="VOLVER">
+	</divclass>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/css/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div class="marco">
+		<h1 align="center">Crear clase</h1>
+		<form class="formulario" action="/clases/crearClase" method="post">
+			<fieldset>
+				<legend>Creación de nueva clase</legend>
+				<div>
+					<label for="tipo">Tipo: </label> 
+					<select name="tipo" required>
+						<option value="">Seleccione una opción</option>
+						<option value="Cardio">Cardio</option>
+    					<option value="Tonificacion">Tonificación</option>
+    					<option value="Baile">Baile</option>
+					</select>
+				</div>
+				<div>
+					<label for="fecha">Fecha: </label> 
+					<input type="date" name="fecha" min="2020-01-01" max="2030-12-31" step="2" required>
+				</div>
+				<div>
+					<label for="duracion">Duración (min): </label> 
+					<input type="number" name="duracion" min="10" max="90" required/>
+				</div>
+				<div>
+					<label for="intensidad">Intensidad: </label> 
+					<select name="intensidad" required>
+						<option value="">Seleccione una opción</option>
+						<option value="Baja">Baja</option>
+    					<option value="Media">Media</option>
+    					<option value="Alta">Alta</option>
+					</select>
+				</div>
+				<div display=inline-block>
+					<input class ='botom1' type="submit" value='Continar'"/> 
+				</div>
+			</fieldset>
+		</form>
+		<div class="contenedorVolver">
+			<input class=botom1 type="button" onclick="history.back()" name="volver atrás" value="VOLVER">
+		</divclass>
+	</div>
+
+</body>
+</html>

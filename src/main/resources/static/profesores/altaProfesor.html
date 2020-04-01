@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Alata Profesor</title>
+<link href="/css/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div class="marco">
+		<h1 align="center">ALTA PROFESOR</h1>
+		<form class="formulario" action="/profesores/alta" method="post">
+			<fieldset>
+				<legend>Alta en el servicio</legend>
+				<div>
+					<label for="nombre">Nombre: </label> 
+					<input type="text" name="nombre" required />
+				</div>
+				<div>
+					<label for="apellido1">Primer apellido: </label> 
+					<input type="text"	name="apellido1" required />
+				</div>
+				<div>
+					<label for="apellido2">Segundo apellido: </label> 
+					<input type="text" name="apellido2" />
+				</div>
+				<div>
+					<label for="sexo">Sexo: </label> 
+					<input type="radio" name="sexo"	value="h" required/> hombre 
+					<input type="radio" name="sexo"	value="m" required/> mujer 
+				</div>
+				<div display=inline-block>
+					<input class ='botom2' type="submit" value='Enviar'"/> 
+					<input class ='botom2' type="reset"	value="Borrar">
+				</div>
+			</fieldset>
+		</form>
+		<div class="contenedorVolver">
+			<input class=botom1 type="button" onclick="history.back()" name="volver atrás" value="VOLVER">
+		</divclass>
+	</div>
+
+</body>
+</html>

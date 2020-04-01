@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Modificar Profesor</title>
+<link href="/css/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div class="marco">
+		<h1></h1>
+		<form action="alta" method="post">
+			<fieldset>
+				<legend>Alta en el servicio</legend>
+				<div>
+					<label for="nombre">Nombre: </label> <input type="text" id="nombre" placeholder={{profesor.nombre}}
+						required />
+				</div>
+				<div>
+					<label for="apellido1">Primer apellido: </label> <input type="text"
+						id="apellido1" placeholder={{profesor.apellido1}} required />
+				</div>
+				<div>
+					<label for="apellido2">Segundo apellido: </label> <input
+						type="text" id="apellido2" placeholder={{profesor.apellido2}} />
+				</div>
+				<div>
+					<label for="nombre">Sexo: </label> <input type="radio" name="sexo"
+						value="h" required> hombre <input type="radio" name="sexo"
+						value="m" required> mujer
+				</div>
+				<div display=inline-block>
+					<input type="submit" value='Enviar' /> <input type="reset"
+						value="Borrar">
+				</div>
+			</fieldset>
+		</form>
+	</div>
+
+</body>
+</html>
