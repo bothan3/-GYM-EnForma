@@ -50,8 +50,7 @@ public class SocioController {
 		
 		return "socios/listadoSocios";	
 	}
-	
-	
+		
 	@GetMapping("/modificar")
 	public String modificarSocio(Model model, @RequestParam long id, @RequestParam String nombre, @RequestParam String apellido1,
 			@RequestParam String apellido2, @RequestParam String dni, @RequestParam String correo) {
@@ -65,6 +64,7 @@ public class SocioController {
 			sociorModif.setApellido2(apellido2);
 			sociorModif.setDni(dni);
 			sociorModif.setCorreo(correo);
+
 			
 			socioRepository.save(sociorModif);
 		}
@@ -92,6 +92,7 @@ public class SocioController {
 				profesor.deleteSocio(socio.get());
 				profesorRepository.save(profesor);
 			}
+
 			socioRepository.delete(socio.get());
 			model.addAttribute("ruta", "socios");
 		}
@@ -151,6 +152,7 @@ public class SocioController {
 		return "socios/listadoSocios";
 	}
 	
+
 
 
 	

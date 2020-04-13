@@ -38,10 +38,12 @@
 						<td>{{duracion}}</td>
 						<td>{{intensidad}}</td>
 						<td>{{#profeosorAsignado}}{{profesor}}{{/profeosorAsignado}}</td>
-						<td>{{socios}}</td>
-						
+						<td>{{socios}}</td>						
 						<td>
 							<span class="editar" onclick="transformarEnEditableClase(this, 'clases')"><i class="material-icons">border_color</i></span>
+
+						
+						<td>
 							<a href="borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
 						</td>
 						<td>
@@ -49,8 +51,7 @@
 									<option value="">Acción a realizar..</option>
 									<option value="asignarProfesor/{{id}}">Asignar profesor</option>
 									<option value="eliminarProfesor/{{id}}">Eliminar profesor</option>
-									
-									
+
 							</select>
 						</td>
 					</tr>

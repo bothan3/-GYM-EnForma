@@ -63,7 +63,7 @@ public class ProfesorController {
 	@GetMapping("/modificar")
 	public String modificarProfesor(Model model, @RequestParam long id, @RequestParam String nombre, @RequestParam String apellido1,
 			@RequestParam String apellido2, @RequestParam String dni, @RequestParam String correo) {
-		
+
 		Optional<Profesor> profesor = profesorRepository.findById(id);
 		Profesor profesorModif = profesor.get();
 		
@@ -73,7 +73,7 @@ public class ProfesorController {
 			profesorModif.setApellido2(apellido2);
 			profesorModif.setDni(dni);
 			profesorModif.setCorreo(correo);
-			
+
 			profesorRepository.save(profesorModif);
 		}
 		model.addAttribute("ruta", "profesores");
@@ -155,5 +155,5 @@ public class ProfesorController {
 		return "profesores/listadoProfesores";
 	}
 	
-	
+
 }

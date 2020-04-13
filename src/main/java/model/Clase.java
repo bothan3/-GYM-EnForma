@@ -33,6 +33,7 @@ public class Clase {
 	private String intensidad;
 	private int participantes;
 	private boolean profeosorAsignado;
+
 	
 	@ManyToOne
 	private Profesor profesor;

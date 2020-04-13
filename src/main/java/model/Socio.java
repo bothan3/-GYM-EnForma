@@ -21,6 +21,7 @@ public class Socio {
 	private String apellido2;
 	private String dni;
 	private String correo;
+
 	private boolean profeosrAsignado = false;
 	
 	@ManyToOne
@@ -37,6 +38,7 @@ public class Socio {
 		this.apellido2 = apellido2;
 		dni = "12345678T";
 		correo = "test@test.com";
+
 	}
 	
 	//SET
@@ -63,6 +65,7 @@ public class Socio {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
+
 	
 	
 	//GET
@@ -82,6 +85,7 @@ public class Socio {
 	public Profesor getProfesor() {
 		return profesor;
 	}
+
 	
 	public void deleteProfesor () {
 		this.profeosrAsignado = false;
@@ -93,7 +97,7 @@ public class Socio {
 	public String getDni() {
 		return dni;
 	}
-	
+
 	
 	
 	@Override

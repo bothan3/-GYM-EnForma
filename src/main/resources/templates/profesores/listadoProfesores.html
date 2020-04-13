@@ -23,13 +23,13 @@
 						<th>SEGUNDO APELLIDO</th>
 						<th>DNI</th>
 						<th>CORREO</th>						
+
 						<th>SOCIOS ASIGNADOS</th>
 						<th>ACCIONES</th>
 						<th>OTRAS OPERACIONES</th>
 					</tr>
 				</thead>
 				{{#Profesores}}
-
 				<tbody>
 					<tr>
 						<td>{{id}}</td>
@@ -38,8 +38,7 @@
 						<td>{{apellido2}}</td>
 						<td>{{dni}}</td>
 						<td>{{correo}}</td>
-						<td>{{socios}}</td>
-						
+						<td>{{socios}}</td>					
 						<td>
 							<span class="editar" onclick="transformarEnEditable(this, 'profesores')"><i class="material-icons">border_color</i></span>
 							<a href="borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
@@ -61,6 +60,7 @@
 	</div>
 	<div class="contenedorVolver">
 		<input class="botom1" type="button" onclick="window.location.href='/profesores/filtros.html'" name="volver atrás" value="VOLVER">
+
 	</divclass>
 </body>
 </html>

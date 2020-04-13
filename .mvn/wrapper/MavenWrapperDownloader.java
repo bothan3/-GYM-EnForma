@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * Copyright 2007-present the original author or authors.
  *
@@ -117,6 +118,8 @@ public class MavenWrapperDownloader {
 
 }
 =======
+=======
+>>>>>>> 788b63bf9c88fb2f503cc2146e42155bd0e0129d
 /*
  * Copyright 2007-present the original author or authors.
  *
@@ -234,4 +237,7 @@ public class MavenWrapperDownloader {
     }
 
 }
+<<<<<<< HEAD
 >>>>>>> Entidades y operaciones en H2 database
+=======
+>>>>>>> 788b63bf9c88fb2f503cc2146e42155bd0e0129d

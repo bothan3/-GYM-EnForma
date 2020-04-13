@@ -21,6 +21,7 @@ public class Profesor {
 	private String apellido2;
 	private String dni;
 	private String correo;
+
 	
 	@OneToMany
 	private List<Socio> socios = new ArrayList<Socio>();
@@ -42,6 +43,7 @@ public class Profesor {
 	
 	
 	//SETS
+
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -99,6 +101,7 @@ public class Profesor {
 	public void deleteClase (Clase clase) {
 		clases.remove(clase);
 	}
+
 	public void deleteSocio (Socio socio) {
 		this.socios.remove(socio);
 	}
