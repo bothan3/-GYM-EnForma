@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Main Page</title>
+<link href="/css/styleIndex.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div id="cont">
+		<div id="encabezado">
+			<h1>GYM Ponte en forma</h1>
+			<h2>Complejo Deportivo URJC</h2>
+		</div>
+		<div id="contenido">
+			<h2>¿QUÉ HACEMOS?</h2>
+			<p>No hay lugar como nuestro gimnasio. Disfruta de instalaciones
+				premium, de un ambiente amigable y de un estilo de vida fitness.</p>
+			<h2>Servicios</h2>
+
+			<p>Te ofrecemos un set completo de servicios para tener una vida
+				equilibrada, saludable y placentera. Este es el lugar donde los
+				valores de nuestra marca cobran vida: equilibrio, apoyo, inclusión y
+				progreso. Todo lo que necesitas está listo y esperándote.</p>
+				
+			<h2>Horarios</h2>
+
+			<p>Todos los dias de 10 a.m - 10 p.m</p>
+			
+			<h2>Ubicación</h2>
+
+			<p>Todos los dias de 10 a.m - 10 p.m</p>
+		</div>
+		<div id="menu">
+			<h3>Menu</h3>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="socios/socios.html">Espacio socio</a></li>
+				<li><a href="profesores/profesores.html">Espacio profesor</a></li>
+				<li><a href="clases/clases.html">Espacio clases</a></li>
+			</ul>
+		</div>
+		<div id="contenido">
+			<h2>
+				NOTICIAS <span>Toda la informacion sobre el gimnasio</span>
+			</h2>
+			{{#noticias}}
+				<li><a href="noticia/{{id}}">{{titulo}}: {{texto}}</a></li> 
+			{{/noticias}}
+		</div>
+	</div>
+</body>
+</html>
+</html>

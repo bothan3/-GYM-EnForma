@@ -19,50 +19,57 @@ import model.Socio;
 
 @Controller
 @EntityScan(basePackages = "model")
-@RequestMapping("/tablon")
-public class TablonController {
+@RequestMapping("/")
+public class WebController {
 
 	@Autowired
 	private NoticiasRepository noticiasRepository;
-	
+
 	@Autowired
 	private ComentarioRepository comentariosRepository;
-	
-	
+
 	@PostConstruct
 	public void init() {
-		for(int i = 0; i<5; i++){
-			Noticia articulo= new Noticia("New"+i, "My new product"+1);
+		for (int i = 0; i < 5; i++) {
+			Noticia articulo = new Noticia("New" + i, "My new product" + 1);
 
 			articulo.addComentario(new Comentario("Cool", "Pepe"));
 			articulo.addComentario(new Comentario("Very cool", "Juan"));
-			
+
 			noticiasRepository.save(articulo);
 		}
-		
+
 	}
-	
-	@GetMapping("/portada")
+
+	@GetMapping("/")
 	public String mostrarPortada(Model model) {
-		
+
 		model.addAttribute("noticias", noticiasRepository.findAll());
-		
-		return "/tablon/portada";
+
+		return "portada";
 	}
-	
+
 	@GetMapping("/noticia/{id}")
 	public String mostrarPortada(Model model, @PathVariable long id) {
-		
+
 		Optional<Noticia> noticia = noticiasRepository.findById(id);
-		
-		if(noticia.isPresent()) {
+
+		if (noticia.isPresent()) {
 			model.addAttribute("noticia", noticia.get());
 			model.addAttribute("comentarios", noticia.get().getComentarios());
 		}
-				
+
 		return "/tablon/noticia";
 	}
-	
-	
-	
+
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+
+	@GetMapping("/loginerror")
+	public String loginerror() {
+		return "loginError";
+	}
+
 }

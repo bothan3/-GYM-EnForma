@@ -3,51 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <title>Busqueda</title>
-<link href="/css/style.css" type="text/css" rel="stylesheet">
+<link href="/css/styleIndex.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<div class="marco">
-		<h1 align="center">BUSQUEDA POR CRITERIO</h1>
-		<div class="contenedorWeb">
-			<table>
-				<tr>
-					<td><a href="listadoProfesores">1) LISTADO COMPLETO</a></td>
-				</tr>
-				<tr>
-					<td>
-						<p>2) BUSQUEDA POR NOMBRE: </p> 
-						<form  action="/profesores/busquedaPersonalizada" method="post">
-							<input type="text" name="palabra">		
-							<input type="hidden" name="tipo" value="1">			
-							<input  type="submit" value='Buscar'/> 
-						</form>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<p>3) BUSQUEDA POR APELLIDO: </p> 
-						<form  action="/profesores/busquedaPersonalizada" method="post">
-							<input type="text" name="palabra">		
-							<input type="hidden" name="tipo" value="2">			
-							<input  type="submit" value='Buscar'/> 
-						</form>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<p>4) BUSQUEDA POR DNI: </p> 
-						<form  action="/profesores/busquedaPersonalizada" method="post">
-							<input type="text" name="palabra">		
-							<input type="hidden" name="tipo" value="3">			
-							<input  type="submit" value='Buscar'/> 
-						</form>
-					</td>
-				</tr>
-			</table>
+	<div id="cont">
+		<div id="encabezado">
+			<h2>Espacio Profesores</h2>
+		</div>
+		<div id="contenido">
+			<h2>
+				<b>Filtros de busqueda</b>
+			</h2>
+			<a href="listadoProfesores">Listado completo</a>
+			<form action="/profesores/busquedaPersonalizada" method="post">
+				<p>
+					Busqueda por nombre: <input type="text" name="palabra"> <input
+						type="hidden" name="tipo" value="1"> <input type="submit"
+						value='Buscar' />
+				</p>
+			</form>
+			<form action="/profesores/busquedaPersonalizada" method="post">
+				<p>
+					Busqueda por apellido: <input type="text" name="palabra"> <input
+						type="hidden" name="tipo" value="2"> <input type="submit"
+						value='Buscar' />
+				</p>
+			</form>
+			<form action="/profesores/busquedaPersonalizada" method="post">
+				<p>
+					Busqueda por dni: <input type="text" name="palabra"> <input
+						type="hidden" name="tipo" value="3"> <input type="submit"
+						value='Buscar' />
+				</p>
+			</form>
+
+		</div>
+		<div id="menu">
+			<h3>Menu</h3>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/socios/socios.html">Espacio socio</a></li>
+				<li><a href="/profesores/profesores.html">Espacio profesor</a></li>
+				<li><a href="/clases/clases.html">Espacio clases</a></li>
+			</ul>
+		</div>
+		<div id="pie">
+			<form action="/logout" method="post">
+				<input type="submit" value="Cerrar sesión" />
+			</form>
 		</div>
 	</div>
-	<div class="contenedorVolver">
-		<input class=botom1 type="button" onclick="window.location.href='/profesores/profesores.html'" name="volver atrás" value="VOLVER">
-	</divclass>
 </body>
 </html>

@@ -3,25 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Menu usuario</title>
-<link href="/css/style.css" type="text/css" rel="stylesheet">
+<link href="/css/styleIndex.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<div class="marco">
-		<h1 align="center">MENÚ PROFESOR</h1>
-		<div class="contenedorWeb">
-			<table>
-				<tr>
-					<td><a href="filtros.html">LISTADO PROFESORES</a></td>
-
-				</tr>
-				<tr>
-					<td><a href="altaProfesor.html">DAR DE ALTA UN PROFESOR</a></td>
-				</tr>
-			</table>
+	<div id="cont">
+		<div id="encabezado">
+			<h2>Espacio Profesores</h2>
+		</div>
+		<div id="contenido">
+			<h2>
+				<b>Operaciones</b>
+			</h2>
+			<li><a href="filtros.html">Listado de profesores</a></li>
+			<li><a href="altaProfesor.html">Dar de alta a un profesor</a></li>
+		</div>
+		<div id="menu">
+			<h3>Menu</h3>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/socios/socios.html">Espacio socio</a></li>
+				<li><a href="/profesores/profesores.html">Espacio profesor</a></li>
+				<li><a href="/clases/clases.html">Espacio clases</a></li>
+			</ul>
+		</div>
+		<div id="pie">
+			<form action="/logout" method="post">
+				<input type="submit" value="Cerrar sesión" />
+			</form>
 		</div>
 	</div>
-	<div class="contenedorVolver">
-		<input class=botom1 type="button" onclick="window.location.href='/'" name="volver atrás" value="VOLVER">
-	</divclass>
+
 </body>
 </html>

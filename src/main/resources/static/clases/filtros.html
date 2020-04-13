@@ -3,41 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <title>Busqueda</title>
-<link href="/css/style.css" type="text/css" rel="stylesheet">
+<link href="/css/styleIndex.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<div class="marco">
-		<h1 align="center">BUSQUEDA POR CRITERIO</h1>
-		<div class="contenedorWeb">
+	<div id="cont">
+		<div id="encabezado">
+			<h2>Espacio Clases</h2>
+		</div>
+		<div id="contenido">
+			<h2>
+				<b>Filtros de busqueda</b>
+			</h2>
+			<a href="listadoClases">Listado completo</a>
+			<form action="/clases/busquedaPersonalizada" method="post">
+				<p>
+					Busqueda por nombre: <input type="text" name="palabra"> <input
+						type="hidden" name="tipo" value="4"> <input type="submit"
+						value='Buscar' />
+				</p>
+			</form>
+			<form action="/clases/busquedaPersonalizada" method="post">
+				<p>
+					Filtrar por fecha descendentemente. <input type="hidden"
+						name="tipo" value="5"> <input type="submit" value='Buscar' />
+				</p>
+			</form>
 
-			<table>
-				<tr>
-					<td><a href="listadoClases">1) LISTADO COMPLETO</a></td>
-				</tr>
-				<tr>
-					<td>
-						<p>2) BUSQUEDA POR TIPO: </p> 
-						<form  action="/clases/busquedaPersonalizada" method="post">
-							<input type="text" name="palabra">		
-							<input type="hidden" name="tipo" value="4">			
-							<input  type="submit" value='Buscar'/> 
-						</form>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<p>3) FILTRAR DESCENDENTE POR FECHA </p> 
-						<form  action="/clases/busquedaPersonalizada" method="post">
-							<input type="hidden" name="tipo" value="5">			
-							<input  type="submit" value='Buscar'/> 
-						</form>
-					</td>
-				</tr>
-			</table>
+		</div>
+		<div id="menu">
+			<h3>Menu</h3>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/socios/socios.html">Espacio socio</a></li>
+				<li><a href="/profesores/profesores.html">Espacio profesor</a></li>
+				<li><a href="/clases/clases.html">Espacio clases</a></li>
+			</ul>
+		</div>
+		<div id="pie">
+			<form action="/logout" method="post">
+				<input type="submit" value="Cerrar sesión" />
+			</form>
 		</div>
 	</div>
-	<div class="contenedorVolver">
-		<input class=botom1 type="button" onclick="window.location.href='/clases/clases.html'" name="volver atrás" value="VOLVER">
-	</divclass>
+
 </body>
 </html>
