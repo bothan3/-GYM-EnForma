@@ -21,22 +21,37 @@
 				equilibrada, saludable y placentera. Este es el lugar donde los
 				valores de nuestra marca cobran vida: equilibrio, apoyo, inclusión y
 				progreso. Todo lo que necesitas está listo y esperándote.</p>
-				
+
 			<h2>Horarios</h2>
 
 			<p>Todos los dias de 10 a.m - 10 p.m</p>
-			
+
 			<h2>Ubicación</h2>
 
 			<p>Todos los dias de 10 a.m - 10 p.m</p>
+
+			{{#user}} <p><b>Hola {{usuario}}</b></p> {{/user}}
+
 		</div>
 		<div id="menu">
 			<h3>Menu</h3>
 			<ul>
+				<li><a href="login"><b>Login</b></a></li>
+				<form action="/logout" method="post">
+				<input type="submit" value="Cerrar sesión" />
+				</form>			
+				
 				<li><a href="/">Home</a></li>
-				<li><a href="socios/socios.html">Espacio socio</a></li>
-				<li><a href="profesores/profesores.html">Espacio profesor</a></li>
-				<li><a href="clases/clases.html">Espacio clases</a></li>
+				{{#user}}
+				{{/user}}
+				{{^user}}
+					<li><a href="login">Registratre</a></li>
+				{{/user}}	
+				
+				{{#admin}}
+					<li><a href="admin.html">Administración</a></li>
+				{{/admin}}
+
 			</ul>
 		</div>
 		<div id="contenido">
@@ -44,7 +59,7 @@
 				NOTICIAS <span>Toda la informacion sobre el gimnasio</span>
 			</h2>
 			{{#noticias}}
-				<li><a href="noticia/{{id}}">{{titulo}}: {{texto}}</a></li> 
+			<li><a href="noticia/{{id}}">{{titulo}}: {{texto}}</a></li>
 			{{/noticias}}
 		</div>
 	</div>

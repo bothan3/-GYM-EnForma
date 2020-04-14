@@ -21,6 +21,7 @@
 						type="hidden" name="tipo" value="1"> <input type="submit"
 						value='Buscar' />
 				</p>
+
 			</form>
 			<form action="/socios/busquedaPersonalizada" method="post">
 				<p>
@@ -28,6 +29,7 @@
 						type="hidden" name="tipo" value="2"> <input type="submit"
 						value='Buscar' />
 				</p>
+
 			</form>
 			<form action="/socios/busquedaPersonalizada" method="post">
 				<p>
@@ -35,22 +37,23 @@
 						type="hidden" name="tipo" value="3"> <input type="submit"
 						value='Buscar' />
 				</p>
+
 			</form>
 
 		</div>
 		<div id="menu">
 			<h3>Menu</h3>
 			<ul>
+				<li><a href="login"><b>Login</b></a></li>
+				<form action="/logout" method="post">
+				<input type="submit" value="Cerrar sesión" />
+				</form>			
+				
 				<li><a href="/">Home</a></li>
-				<li><a href="/socios/socios.html">Espacio socio</a></li>
-				<li><a href="/profesores/profesores.html">Espacio profesor</a></li>
-				<li><a href="/clases/clases.html">Espacio clases</a></li>
 			</ul>
 		</div>
 		<div id="pie">
-			<form action="/logout" method="post">
-				<input type="submit" value="Cerrar sesión" />
-			</form>
+				<input class="botom1" type="button" onclick="window.location.href='/admin.html'" name="volver atrás" value="VOLVER">
 		</div>
 	</div>
 </body>

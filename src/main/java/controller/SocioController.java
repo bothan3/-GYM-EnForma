@@ -5,23 +5,23 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import model.Busqueda;
 import model.Profesor;
 import model.Socio;
+import model.User;
 
 @Controller
 @EntityScan(basePackages = "model")
@@ -33,6 +33,9 @@ public class SocioController {
 	
 	@Autowired
 	private SocioRepository socioRepository;
+	
+	 @Autowired
+	 private UserRepository userRepository;
 	
 	
 	
@@ -74,9 +77,13 @@ public class SocioController {
 	
 	
 	@PostMapping("/alta")
-	public String altaUsuario(Model model, Socio socio) {
+	public String altaUsuario(Model model, Socio socio, @RequestParam String password) {
 
 		socioRepository.save(socio);
+		
+		User usuario = new User(socio.getNombre(), password, "ROLE_USER" );
+		socio.setUsuario(usuario);
+		userRepository.save(usuario);
 		model.addAttribute("ruta", "socios");
 
 		return "validacion";
@@ -148,6 +155,15 @@ public class SocioController {
 			model.addAttribute("socios", socioRepository.findByDniIgnoreCase(busqueda.getPalabra()));
 			break;
 		}
+		
+		return "socios/listadoSocios";
+	}
+	
+	@GetMapping("/ModificarDatos/{nombre}")
+	public String busquedaPersonanlizada (Model model, @PathVariable String nombre) {
+		
+		model.addAttribute("socios", socioRepository.findByNombreIgnoreCase(nombre));
+		
 		
 		return "socios/listadoSocios";
 	}

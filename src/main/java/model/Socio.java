@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,9 @@ public class Socio {
 	private String correo;
 
 	private boolean profeosrAsignado = false;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private User usuario;
 	
 	@ManyToOne
 	private Profesor profesor;
@@ -65,6 +69,10 @@ public class Socio {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
+	public void setUsuario(User usuario) {
+		this.usuario = usuario;
+	}
+	
 
 	
 	
@@ -96,6 +104,9 @@ public class Socio {
 	}
 	public String getDni() {
 		return dni;
+	}
+	public User getUsuario() {
+		return usuario;
 	}
 
 	

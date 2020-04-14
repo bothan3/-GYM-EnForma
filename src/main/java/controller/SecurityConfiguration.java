@@ -1,5 +1,6 @@
 package controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
+	@Autowired
+	 public UserRepositoryAuthenticationProvider authenticationProvider;
 	
 	@Override
 	 protected void configure(HttpSecurity http) throws Exception {
@@ -15,19 +18,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	 // Public pages
 	 http.authorizeRequests().antMatchers("/").permitAll();
 	 http.authorizeRequests().antMatchers("/login").permitAll();
-	 http.authorizeRequests().antMatchers("/loginError").permitAll();
+	 http.authorizeRequests().antMatchers("/loginerror").permitAll();
 	 http.authorizeRequests().antMatchers("/logout").permitAll();
 	 http.authorizeRequests().antMatchers("/**/*.js", "/**/*.css").permitAll();
+	 http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
 	 
 	 // Private pages (all other pages)
 	 http.authorizeRequests().anyRequest().authenticated();
+
+
 	 
 	 // Login form
 	 http.formLogin().loginPage("/login");
 	 http.formLogin().usernameParameter("username");
 	 http.formLogin().passwordParameter("password");
-	 http.formLogin().defaultSuccessUrl("/socios/socios.html");
-	 http.formLogin().failureUrl("/loginError");
+	 http.formLogin().defaultSuccessUrl("/");
+	 http.formLogin().failureUrl("/loginerror");
 	 
 	 // Logout
 	 http.logout().logoutUrl("/logout");
@@ -41,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	 @Override
 	 protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-	 // User cargado en memoria
-	 auth.inMemoryAuthentication().withUser("user").password("{noop}pass").roles("USER");
+		 // Database authentication provider
+	     auth.authenticationProvider(authenticationProvider);
 	 }
 }

@@ -1,8 +1,11 @@
 package controller;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -42,7 +45,13 @@ public class WebController {
 	}
 
 	@GetMapping("/")
-	public String mostrarPortada(Model model) {
+	public String mostrarPortada(Model model,  HttpServletRequest request) throws IOException, ServletException {
+
+		 model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		 model.addAttribute("user", request.isUserInRole("USER"));
+		 model.addAttribute("usuario", request.getRemoteUser());
+
+
 
 		model.addAttribute("noticias", noticiasRepository.findAll());
 
@@ -63,13 +72,15 @@ public class WebController {
 	}
 
 	@GetMapping("/login")
-	public String login() {
+	public String login(Model model, HttpServletRequest request) {
+
+		 
 		return "login";
 	}
 
 	@GetMapping("/loginerror")
 	public String loginerror() {
-		return "loginError";
+		return "loginerror";
 	}
 
 }

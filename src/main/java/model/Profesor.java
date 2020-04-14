@@ -3,11 +3,13 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Profesor {
@@ -22,6 +24,8 @@ public class Profesor {
 	private String dni;
 	private String correo;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	private User usuario;
 	
 	@OneToMany
 	private List<Socio> socios = new ArrayList<Socio>();
@@ -68,6 +72,9 @@ public class Profesor {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+	public void setUsuario(User usuario) {
+		this.usuario = usuario;
+	}
 	
 	
 	//GETS
@@ -94,6 +101,9 @@ public class Profesor {
 	}
 	public String getCorreo() {
 		return correo;
+	}
+	public User getUsuario() {
+		return usuario;
 	}
 	
 	

@@ -12,4 +12,6 @@ public interface SocioRepository extends JpaRepository<Socio, Long>{
 	List<Socio> findByNombreIgnoreCase(String nombre);
 	List<Socio> findByApellido1IgnoreCase(String nombre);
 	List<Socio> findByDniIgnoreCase(String nombre);
+	List<Socio> findByCorreoIgnoreCase(String correo);
+
 }

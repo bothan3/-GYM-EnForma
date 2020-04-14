@@ -131,6 +131,7 @@ public class ClaseController {
 		return "clases/listadoClases";	
 	}
 	
+	
 	@GetMapping("/eliminarProfesor/{id}")
 	public String eliminarSocio(Model model, @PathVariable long id) {
 		

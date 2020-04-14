@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import model.Busqueda;
 import model.Profesor;
 import model.Socio;
+import model.User;
 
 @Controller
 @EntityScan(basePackages = "model")
@@ -30,6 +31,9 @@ public class ProfesorController {
 	
 	@Autowired
 	private SocioRepository socioRepository;
+	
+	@Autowired
+	 private UserRepository userRepository;
 	
 	@PostConstruct
 	public void init() {
@@ -81,8 +85,11 @@ public class ProfesorController {
 	}
 	
 	@PostMapping("/alta")
-	public String altaUsuario(Model model, Profesor profesor) {
+	public String altaUsuario(Model model, Profesor profesor, @RequestParam String password) {
 
+		User usuario = new User(profesor.getNombre(), password, "ROLE_USER", "ROLE_ADMIN" );
+		profesor.setUsuario(usuario);
+		userRepository.save(usuario);
 		profesorRepository.save(profesor);
 		model.addAttribute("ruta", "profesores");
 
