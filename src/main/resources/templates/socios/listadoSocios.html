@@ -21,8 +21,8 @@
 						<th>SEGUNDO APELLIDO</th>
 						<th>DNI</th>
 						<th>CORREO</th>
-
 						<th>PROFESOR ASIGNADO</th>
+						<th>CLASES APUNTADAS</th>
 						<th>ACCIONES</th>
 						<th>OTRAS OPERACIONES</th>
 					</tr>
@@ -37,6 +37,8 @@
 						<td>{{dni}}</td>
 						<td>{{correo}}</td>
 						<td>{{#profeosrAsignado}}{{profesor}}{{/profeosrAsignado}}</td>
+						<td>{{clases}}</td>
+						
 						<td>
 							<span class="editar" onclick="transformarEnEditable(this,'socios')"><i class="material-icons">border_color</i></span>
 							<a href="borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
@@ -44,7 +46,9 @@
 						<td>
 							<select name="forma" onchange="location = this.value;">
 									<option value="">Acción a realizar..</option>
-									<option value="asignarProfesor/{{id}}">Asignar profesor</option>
+									<option value="apuntarClase/{{id}}">Apuntar clase</option>
+									<option value="desapuntarClase/{{id}}">Desapuntar clase</option>
+									
 							</select>
 						</td>
 					</tr>

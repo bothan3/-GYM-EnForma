@@ -23,8 +23,8 @@
 						<th>SEGUNDO APELLIDO</th>
 						<th>DNI</th>
 						<th>CORREO</th>						
-
 						<th>SOCIOS ASIGNADOS</th>
+						<th>CLASES ASIGNADAS</th>
 						<th>ACCIONES</th>
 						<th>OTRAS OPERACIONES</th>
 					</tr>
@@ -38,7 +38,8 @@
 						<td>{{apellido2}}</td>
 						<td>{{dni}}</td>
 						<td>{{correo}}</td>
-						<td>{{socios}}</td>					
+						<td>{{socios}}</td>	
+						<td>{{clases}}</td>								
 						<td>
 							<span class="editar" onclick="transformarEnEditable(this, 'profesores')"><i class="material-icons">border_color</i></span>
 							<a href="borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
@@ -46,7 +47,8 @@
 						<td>
 							<select name="forma" onchange="location = this.value;">
 									<option value="">Acción a realizar..</option>
-									<option value="eliminarSocio/{{id}}">eliminar socio asignado</option>
+									<option value="asignarSocio/{{id}}">Asignar un socioo</option>
+									<option value="eliminarSocio/{{id}}">eliminar un socio asignado</option>
 							</select>
 						</td>
 					</tr>

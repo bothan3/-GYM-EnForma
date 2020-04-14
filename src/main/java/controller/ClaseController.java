@@ -45,6 +45,7 @@ public class ClaseController {
 		} 
 	}
 	
+	//Crea una clase
 	@PostMapping("/crearClase")
 	public String asignarUsuariosProfesor(Model model,  Clase clase) {
 		
@@ -55,6 +56,7 @@ public class ClaseController {
 		return "clases/asignarProfesorClase";
 	}
 	
+	//Modifica la info de las clases
 	@GetMapping("/modificar")
 	public String modificarClase(Model model, @RequestParam long id, @RequestParam String tipo, @RequestParam Date fecha,
 			@RequestParam int duracion, @RequestParam String intensidad) {
@@ -80,7 +82,7 @@ public class ClaseController {
 		Optional<Profesor> profesor = profesorRepository.findById(idProfesor);
 		Optional<Clase> clase = claseRepository.findById(idClase);
 		Profesor profe = profesor.get();
-		
+				
 		if((clase.isPresent())&(profesor.isPresent())){
 			List<Clase> clasesProfesor = profe.getClases();
 			clasesProfesor.add(clase.get());
@@ -101,12 +103,16 @@ public class ClaseController {
 		
 		Optional<Clase> clase = claseRepository.findById(id);
 		
-		if(clase.isPresent()) {
+		if(clase.isPresent() & (!(clase.get().isEmptyProfesor()))) {
 			model.addAttribute("clase", clase.get());
 			model.addAttribute("Profesores", profesorRepository.findAll());
+			return "clases/asignarProfesorClase";
+		}
+		else {
+			model.addAttribute("mensaje", "Esta clase ya tiene profesor..");
+			return "error";
 		}
 		
-		return "clases/asignarProfesorClase";
 	}
 	
 	@GetMapping("/borrar/{id}")
@@ -114,8 +120,10 @@ public class ClaseController {
 	Optional<Clase> clase = claseRepository.findById(id);
 		
 		if(clase.isPresent()) {
-			Profesor profesor = clase.get().getProfesor();
-			profesor.deleteClase(clase.get());
+			if (!(clase.get().isEmptyProfesor())){
+				Profesor profesor = clase.get().getProfesor();
+				profesor.deleteClase(clase.get());
+			}
 			claseRepository.delete(clase.get());
 			model.addAttribute("ruta", "clases");
 		}

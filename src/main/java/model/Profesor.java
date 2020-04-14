@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +16,6 @@ public class Profesor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
@@ -36,18 +34,15 @@ public class Profesor {
 	public Profesor() {
 		// TODO Auto-generated constructor stub
 	}
-	public Profesor(String nombre, String apellido1) {
+	public Profesor(String nombre, String apellido1, String apellido2, String dni, String correo) {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
-		this.apellido2 = "";
-		dni = "12345678T";
-		correo = "test@test.com";	
+		this.apellido2 = apellido2;
+		this.dni = dni;
+		this.correo = correo;
 	}
-	
-	
-	
+		
 	//SETS
-
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -78,9 +73,6 @@ public class Profesor {
 	
 	
 	//GETS
-	public long getId() {
-		return id;
-	}
 	public String getApellido1() {
 		return apellido1;
 	}
@@ -105,15 +97,20 @@ public class Profesor {
 	public User getUsuario() {
 		return usuario;
 	}
+	public long getId() {
+		return id;
+	}
 	
 	
 	//OPERACIONES
 	public void deleteClase (Clase clase) {
 		clases.remove(clase);
 	}
-
 	public void deleteSocio (Socio socio) {
 		this.socios.remove(socio);
+	}
+	public void addSocio (Socio socio) {
+		this.socios.add(socio);
 	}
 	
 	

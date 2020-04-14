@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF8">
-	<title>Listado clases</title>
+	<meta charset="UTF-8">
+	<title>Listado Profesores</title>
 	<link href="/css/style.css" type="text/css" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<script type="text/javascript" src="/js/functions.js"></script>
-	
-		
 </head>
 <body>
 	<div class="marco">
-		<h1 align="center">Listado de las clases</h1>
+		<h1 align="center">Listado de todos las clases</h1>
 
 		<div class="contenedorWeb">
 			<table>
@@ -23,13 +21,10 @@
 						<th>DURACIÓN</th>
 						<th>INTENSIDAD</th>
 						<th>PROFESOR</th>
-						<th>INSCRITOS</th>
 						<th>ACCIONES</th>
-						<th>OTRAS OPERACIONES</th>
 					</tr>
 				</thead>
 				{{#clases}}
-
 				<tbody>
 					<tr>
 						<td>{{id}}</td>
@@ -38,18 +33,13 @@
 						<td>{{duracion}}</td>
 						<td>{{intensidad}}</td>
 						<td>{{#profeosorAsignado}}{{profesor}}{{/profeosorAsignado}}</td>
-						<td>{{socios}}</td>						
 						<td>
-							<span class="editar" onclick="transformarEnEditableClase(this, 'clases')"><i class="material-icons">border_color</i></span>
-							<a href="borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
-						</td>
-						<td>
-							<select name="forma" onchange="location = this.value;">
-									<option value="">Acción a realizar..</option>
-									<option value="asignarProfesor/{{id}}">Asignar profesor</option>
-									<option value="eliminarProfesor/{{id}}">Eliminar profesor</option>
-
-							</select>
+							<form action="/socios/apuntarClase" method="post">
+								<input type="hidden" name="idClase" value="{{id}}">
+								<input type="hidden" name="idSocio" value="{{socio.id}}">
+								<button class="buttomIcon" type="submit" style="font-size:24px"> <i style="color:#5FBF21" class="material-icons">check_circle</i></button>
+							</form>
+							<a href="apuntarClase/{{id}}{{socio.id}}" style="color:#5FBF21"></span>
 						</td>
 					</tr>
 					{{/clases}}
@@ -60,7 +50,8 @@
 	<div class="contendorEdicion" id="contenedorForm">
 	</div>
 	<div class="contenedorVolver">
-		<input class="botom1" type="button" onclick="window.location.href='/profesores/filtros.html'" name="volver atrás" value="VOLVER">
+		<input class="botom1" type="button" onclick="window.location.href='/socios/filtros.html'" name="volver atrás" value="VOLVER">
 	</divclass>
+
 </body>
 </html>

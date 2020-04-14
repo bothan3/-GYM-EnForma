@@ -1,10 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -31,18 +35,21 @@ public class Socio {
 	@ManyToOne
 	private Profesor profesor;
 	
+	@ManyToMany
+	private List<Clase> clases = new ArrayList<Clase>();
+
+	
 	
 		
 	public Socio() {
 	}
 	
-	public Socio(String nombre, String apellido1, String apellido2, String sexo) {
+	public Socio(String nombre, String apellido1, String apellido2, String dni, String correo) {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
-		dni = "12345678T";
-		correo = "test@test.com";
-
+		this.dni = dni;
+		this.correo = correo;
 	}
 	
 	//SET
@@ -93,12 +100,6 @@ public class Socio {
 	public Profesor getProfesor() {
 		return profesor;
 	}
-
-	
-	public void deleteProfesor () {
-		this.profeosrAsignado = false;
-		this.profesor=null;
-	}
 	public String getCorreo() {
 		return correo;
 	}
@@ -108,7 +109,24 @@ public class Socio {
 	public User getUsuario() {
 		return usuario;
 	}
+	public List<Clase> getClases() {
+		return clases;
+	}
 
+	// OPERACIONES
+	public void addClase(Clase clase) {
+		this.clases.add(clase);
+	}
+	public void deleteClase(Clase clase) {
+		this.clases.remove(clase);
+	}
+	public void deleteProfesor () {
+		this.profeosrAsignado = false;
+		this.profesor=null;
+	}
+	public boolean isEmpyProfesor () {
+		return this.profeosrAsignado;
+	}
 	
 	
 	@Override

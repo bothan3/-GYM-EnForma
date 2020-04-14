@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="marco">
-		<h1 align="center">Listado socios asignados</h1>
+		<h1 align="center">Listado socios a asignar</h1>
 
 		<div class="contenedorWeb">
 			<table>
@@ -26,12 +26,12 @@
 						<td>{{nombre}}</td>
 						<td>{{apellido1}}</td>
 						<td>
-							<form action="/profesores/eliminarSocio" method="post">
+							<form action="/profesores/asignarSocio" method="post">
 								<input type="hidden" name="idSocio" value="{{id}}">
-								<input type="hidden" name="idProfesor" value="{{profesor.id}}">
-								<button class="buttomIcon" type="submit" style="font-size:24px"> <i style="color:#A73D26" class="material-icons">highlight_off</i></button>
+								<input type="hidden" name="idProfesor" value="{{profe.id}}">
+								<button class="buttomIcon" type="submit" style="font-size:24px"> <i style="color:#5FBF21" class="material-icons">check_circle</i></button>
 							</form>
-							<a href="eliminarSocio/{{id}}{{profesor.id}}" style="color:#5FBF21"></span>
+							<a href="asignarSocio/{{id}}{{profe.id}}" style="color:#5FBF21"></span>
 						</td>
 
 					</tr>
