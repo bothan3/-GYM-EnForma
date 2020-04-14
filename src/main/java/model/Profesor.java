@@ -25,10 +25,10 @@ public class Profesor {
 	@OneToOne(cascade = CascadeType.ALL)
 	private User usuario;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Socio> socios = new ArrayList<Socio>();
 	
-	@OneToMany 
+	@OneToMany (cascade = CascadeType.ALL)
 	private List<Clase> clases = new ArrayList<Clase>();
 	
 	public Profesor() {

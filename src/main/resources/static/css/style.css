@@ -48,6 +48,14 @@ label {
 	width: 20%;
 }
 
+.contenedorAvanzar {
+	alaing-items: center;
+	display: inline-block;
+	justify-content: center;
+	margin: auto;
+	width: 10%;
+}
+
 .contenedorValidacion {
 	aling-items: center;
 	justify-content: center;

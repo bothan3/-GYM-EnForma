@@ -29,7 +29,7 @@
 						<th>OTRAS OPERACIONES</th>
 					</tr>
 				</thead>
-				{{#Profesores}}
+				{{#profesores}}
 				<tbody>
 					<tr>
 						<td>{{id}}</td>
@@ -42,19 +42,25 @@
 						<td>{{clases}}</td>								
 						<td>
 							<span class="editar" onclick="transformarEnEditable(this, 'profesores')"><i class="material-icons">border_color</i></span>
-							<a href="borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
+							<a href="/profesores/borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
 						</td>
 						<td>
 							<select name="forma" onchange="location = this.value;">
 									<option value="">Acción a realizar..</option>
-									<option value="asignarSocio/{{id}}">Asignar un socioo</option>
-									<option value="eliminarSocio/{{id}}">eliminar un socio asignado</option>
+									<option value="/profesores/asignarSocio/{{id}}">Asignar un socioo</option>
+									<option value="/profesores/eliminarSocio/{{id}}">eliminar un socio asignado</option>
 							</select>
 						</td>
 					</tr>
-					{{/Profesores}}
+					{{/profesores}}
 				</tbody>
 			</table>
+			{{#paginacion}}
+			<div class="contenedorAvanzar">
+					<input class="botom2" type="button" onclick="window.location.href='/profesores/listadoProfesores/{{antNum}}'" name="<"value="<">
+					<input class="botom2" type="button" onclick="window.location.href='/profesores/listadoProfesores/{{sigNum}}'" name=">"value=">">
+			</divclass>
+			{{/paginacion}}
 		</div>
 	</div>
 	<div class="contendorEdicion" id="contenedorForm">

@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Noticia {
@@ -19,6 +26,9 @@ public class Noticia {
 
 	private String titulo;
 	private String texto;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
+	private Date fecha;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="articulo")
 	private List<Comentario> comentarios = new ArrayList<>();
@@ -28,6 +38,8 @@ public class Noticia {
 	public Noticia(String titulo, String texto) {
 		this.titulo = titulo;
 		this.texto = texto;
+		Calendar calendar = Calendar.getInstance();
+		this.fecha = calendar.getTime();
 	}
 
 	public void setId(long id) {
@@ -65,6 +77,6 @@ public class Noticia {
 	
 	@Override
 	public String toString() {
-		return "Articulo [id=" + id + ", titulo=" + titulo + ", texto=" + texto + "]";
+		return titulo + " " + fecha;
 	}
 }

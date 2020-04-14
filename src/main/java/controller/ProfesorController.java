@@ -6,6 +6,8 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,15 +45,39 @@ public class ProfesorController {
 		profesorRepository.save(new Profesor("JOSE", "LUIS", "ROSIQUE", "23023982", "LUISROSIQUE@gmail.com"));
 		profesorRepository.save(new Profesor("MARCO", "ANTONIO", "JIMENEZ", "21492944", "ANTONIOJIMENEZ@gmail.com"));
 		profesorRepository.save(new Profesor("ELENA", "PATERNA", "MORAN", "14312215", "PATERNAMORAN@gmail.com"));
-		profesorRepository
-				.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
+		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
+		
+		
+		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
+		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
+		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
+		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
+		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
+
 	}
 
 	// Listar todo los profesores
 	@GetMapping("/listadoProfesores")
-	public String listado(Model model) {
-		model.addAttribute("Profesores", profesorRepository.findAll());
-
+	public String listado(Model model, Pageable page) {
+		model.addAttribute("paginacion", true);
+		page = PageRequest.of(0, 5);		
+		model.addAttribute("profesores", profesorRepository.findAll(page));
+		model.addAttribute("antNum", 0);
+		model.addAttribute("sigNum", 1);
+		return "profesores/listadoProfesores";
+	}
+	
+	@GetMapping("/listadoProfesores/{num}")
+	public String listadoPag(Model model, Pageable page, @PathVariable int num) {
+		model.addAttribute("paginacion", true);
+		page = PageRequest.of(num, 5);		
+		model.addAttribute("profesores", profesorRepository.findAll(page));
+		if (num == 0) {
+			model.addAttribute("antNum", 0);
+		}else {
+			model.addAttribute("antNum",num-1);
+		}
+		model.addAttribute("sigNum", num+1);
 		return "profesores/listadoProfesores";
 	}
 
@@ -116,16 +142,16 @@ public class ProfesorController {
 	// Busqueda personalizada por criterio
 	@PostMapping("/busquedaPersonalizada")
 	public String busquedaPersonanlizada(Model model, Busqueda busqueda) {
-
+		model.addAttribute("paginacion", false);
 		switch (busqueda.getTipo()) {
 		case 1:
-			model.addAttribute("Profesores", profesorRepository.findByNombreIgnoreCase(busqueda.getPalabra()));
+			model.addAttribute("profesores", profesorRepository.findByNombreIgnoreCase(busqueda.getPalabra()));
 			break;
 		case 2:
-			model.addAttribute("Profesores", profesorRepository.findByApellido1IgnoreCase(busqueda.getPalabra()));
+			model.addAttribute("profesores", profesorRepository.findByApellido1IgnoreCase(busqueda.getPalabra()));
 			break;
 		case 3:
-			model.addAttribute("Profesores", profesorRepository.findByDniIgnoreCase(busqueda.getPalabra()));
+			model.addAttribute("profesores", profesorRepository.findByDniIgnoreCase(busqueda.getPalabra()));
 			break;
 		}
 

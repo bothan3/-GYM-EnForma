@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import model.Noticia;
 import model.Comentario;
-import model.Profesor;
-import model.Socio;
 
 @Controller
 @EntityScan(basePackages = "model")
@@ -33,28 +34,25 @@ public class WebController {
 
 	@PostConstruct
 	public void init() {
-		for (int i = 0; i < 5; i++) {
-			Noticia articulo = new Noticia("New" + i, "My new product" + 1);
-
-			articulo.addComentario(new Comentario("Cool", "Pepe"));
-			articulo.addComentario(new Comentario("Very cool", "Juan"));
-
-			noticiasRepository.save(articulo);
-		}
-
+			noticiasRepository.save(new Noticia("Cierre por COVID-19", "Debido a la situación extraordinaria que estamos sufriendo, el gimnasio cerrará hasta junio."));
+			noticiasRepository.save(new Noticia("Nueva clase de cardio", "Este miercoles a las 18.00 tendremos una clase de cario indoor de spinning en nuestro canal youtube"));
+			noticiasRepository.save(new Noticia("Nueva clase de baile", "Este jueves tendremos una clase de baile en nuestro canal youtube"));
+			noticiasRepository.save(new Noticia("Nueva clase de crossfit", "Este viernes tendremos una crossfit de cario indoor de spinning en nuestro canal youtube"));
+			noticiasRepository.save(new Noticia("Proxima apertura", "Es posible que la apertura del gimnasio se retrase a 2021. Sentimos las molestias"));
 	}
 
 	@GetMapping("/")
-	public String mostrarPortada(Model model,  HttpServletRequest request) throws IOException, ServletException {
+	public String mostrarPortada(Model model,  HttpServletRequest request, Pageable page) throws IOException, ServletException {
 
 		 model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		 model.addAttribute("user", request.isUserInRole("USER"));
 		 model.addAttribute("usuario", request.getRemoteUser());
 
-
-
-		model.addAttribute("noticias", noticiasRepository.findAll());
-
+		 //Creamos una pagina con las ultimas noticias
+		 page = PageRequest.of(0, 4, Sort.by("id").descending());
+		 
+		 model.addAttribute("noticias", noticiasRepository.findAll(page));
+		
 		return "portada";
 	}
 
@@ -73,8 +71,6 @@ public class WebController {
 
 	@GetMapping("/login")
 	public String login(Model model, HttpServletRequest request) {
-
-		 
 		return "login";
 	}
 

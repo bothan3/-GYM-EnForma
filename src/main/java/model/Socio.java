@@ -32,10 +32,10 @@ public class Socio {
 	@OneToOne(cascade = CascadeType.ALL)
 	private User usuario;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Profesor profesor;
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Clase> clases = new ArrayList<Clase>();
 
 	

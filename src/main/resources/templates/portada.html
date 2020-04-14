@@ -30,7 +30,11 @@
 
 			<p>Todos los dias de 10 a.m - 10 p.m</p>
 
-			{{#user}} <p><b>Hola {{usuario}}</b></p> {{/user}}
+			{{#user}}
+			<p>
+				<b>Hola {{usuario}}</b>
+			</p>
+			{{/user}}
 
 		</div>
 		<div id="menu">
@@ -38,23 +42,26 @@
 			<ul>
 				<li><a href="login"><b>Login</b></a></li>
 				<form action="/logout" method="post">
-				<input type="submit" value="Cerrar sesión" />
-				</form>			
-				
-				<li><a href="/">Home</a></li>	
+					<input type="submit" value="Cerrar sesión" />
+				</form>
+
+				<li><a href="/">Home</a></li> 
 				{{#admin}}
-					<li><a href="admin.html">Administración</a></li>
+				<li><a href="admin.html">Administración</a></li> 
 				{{/admin}}
 
 			</ul>
 		</div>
-		<div id="contenido">
-			<h2>
-				NOTICIAS <span>Toda la informacion sobre el gimnasio</span>
-			</h2>
+		<div id="noticas">
+			<h3>
+				NOTICIAS 
+			</h3>
 			{{#noticias}}
-			<li><a href="noticia/{{id}}">{{titulo}}: {{texto}}</a></li>
-			{{/noticias}}
+				<span class="noticia">
+				<h2>{{titulo}} : {{fecha}}</h2>
+				<p>{{texto}}</p>
+				</span>
+			{{/noticias}}			
 		</div>
 	</div>
 </body>

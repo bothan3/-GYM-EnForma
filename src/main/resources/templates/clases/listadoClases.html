@@ -41,13 +41,13 @@
 						<td>{{socios}}</td>						
 						<td>
 							<span class="editar" onclick="transformarEnEditableClase(this, 'clases')"><i class="material-icons">border_color</i></span>
-							<a href="borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
+							<a href="/clases/borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
 						</td>
 						<td>
 							<select name="forma" onchange="location = this.value;">
 									<option value="">Acción a realizar..</option>
-									<option value="asignarProfesor/{{id}}">Asignar profesor</option>
-									<option value="eliminarProfesor/{{id}}">Eliminar profesor</option>
+									<option value="/clases/asignarProfesor/{{id}}">Asignar profesor</option>
+									<option value="/clases/eliminarProfesor/{{id}}">Eliminar profesor</option>
 
 							</select>
 						</td>
@@ -55,12 +55,18 @@
 					{{/clases}}
 				</tbody>
 			</table>
+			{{#paginacion}}
+			<div class="contenedorAvanzar">
+					<input class="botom2" type="button" onclick="window.location.href='/clases/listadoClases/{{antNum}}'" name="<"value="<">
+					<input class="botom2" type="button" onclick="window.location.href='/clases/listadoClases/{{sigNum}}'" name=">"value=">">
+			</divclass>
+			{{/paginacion}}
 		</div>
 	</div>
 	<div class="contendorEdicion" id="contenedorForm">
 	</div>
 	<div class="contenedorVolver">
-		<input class="botom1" type="button" onclick="window.location.href='/profesores/filtros.html'" name="volver atrás" value="VOLVER">
+		<input class="botom1" type="button" onclick="window.location.href='/clases/filtros.html'" name="volver atrás" value="VOLVER">
 	</divclass>
 </body>
 </html>

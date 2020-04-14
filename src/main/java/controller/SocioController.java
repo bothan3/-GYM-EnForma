@@ -1,12 +1,15 @@
 package controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,12 +48,40 @@ public class SocioController {
 		socioRepository.save(new Socio("DANIEL","MUÑOZ","PICON","77722638","MUÑOZPICON@gmail.com"));
 		socioRepository.save(new Socio("LUIS","ANTONIO","DELICADO","21678229","ANTONIODELICADO@gmail.com"));
 		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
+		
+		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
+		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
+		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
+		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
+		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
+
+		
 	}
 
 	//Nos devueleve el listaod completo de socios
 	@GetMapping("/listadoSocios")
-	public String listado(Model model) {
-		model.addAttribute("socios", socioRepository.findAll());
+	public String listado(Model model, HttpServletRequest request, Pageable page) {
+
+		
+		page = PageRequest.of(0, 5);		
+		model.addAttribute("socios", socioRepository.findAll(page));
+		model.addAttribute("antNum", 0);
+		model.addAttribute("sigNum", 1);
+		model.addAttribute("paginacion", true);
+		return "socios/listadoSocios";
+	}
+	@GetMapping("/listadoSocios/{num}")
+	public String listadoPag(Model model, HttpServletRequest request, Pageable page, @PathVariable int num) {
+		boolean paginacion = true;
+
+		page = PageRequest.of(num, 5);
+		model.addAttribute("socios", socioRepository.findAll(page));
+		if (num == 0) {
+			model.addAttribute("antNum", 0);
+		}else {
+			model.addAttribute("antNum",num-1);
+		}
+		model.addAttribute("sigNum", num+1);
 		return "socios/listadoSocios";
 	}
 
@@ -150,7 +181,8 @@ public class SocioController {
 	//Busqueda según criterio
 	@PostMapping("/busquedaPersonalizada")
 	public String busquedaPersonanlizada(Model model, Busqueda busqueda) {
-
+		model.addAttribute("paginacion", false);
+		
 		switch (busqueda.getTipo()) {
 		case 1:
 			model.addAttribute("socios", socioRepository.findByNombreIgnoreCase(busqueda.getPalabra()));

@@ -6,9 +6,10 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import model.Busqueda;
 import model.Clase;
 import model.Profesor;
-import model.Socio;
 
 @Controller
 @EntityScan(basePackages = "model")
@@ -135,12 +135,28 @@ public class ClaseController {
 	}
 	
 	@GetMapping("/listadoClases")
-	public String listado(Model model) {
-		
-		model.addAttribute("clases", claseRepository.findAll());
-		
+	public String listado(Model model, Pageable page) {
+		page = PageRequest.of(0, 5);
+		model.addAttribute("clases", claseRepository.findAll(page));
+		model.addAttribute("paginacion", true);
+		model.addAttribute("antNum", 0);
+		model.addAttribute("sigNum", 1);
 		return "clases/listadoClases";	
 	}
+	@GetMapping("/listadoClases/{num}")
+	public String listadoPag(Model model, Pageable page,  @PathVariable int num) {
+		page = PageRequest.of(num, 5);
+		model.addAttribute("paginacion", true);
+		model.addAttribute("clases", claseRepository.findAll(page));
+		if (num == 0) {
+			model.addAttribute("antNum", 0);
+		}else {
+			model.addAttribute("antNum",num-1);
+		}
+		model.addAttribute("sigNum", num+1);
+		return "clases/listadoClases";
+	}
+	
 	
 	
 	@GetMapping("/eliminarProfesor/{id}")
@@ -164,7 +180,8 @@ public class ClaseController {
 	//Busqueda personalizada
 	@PostMapping("/busquedaPersonalizada")
 	public String busquedaPersonanlizada (Model model, Busqueda busqueda) {
-		
+		model.addAttribute("paginacion", false);
+
 		switch(busqueda.getTipo()) {
 		case 4:
 			model.addAttribute("clases", claseRepository.findByTipoIgnoreCase(busqueda.getPalabra()));
