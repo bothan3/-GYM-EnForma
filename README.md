@@ -48,13 +48,13 @@ Página web de un gimnasio donde cualquier usuario puede entrar para tener infor
 
 ## DIAGRAMA DE NAVEGACIÓN
 
-![mapaNavegacion](https://github.com/bothan3/-GYM-EnForma/tree/master/imagenes/mapaNavegacion.jpg)
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/tree/master/imagenes/mapaNavegacion.jpg)
 
 ***
 
 ## DIAGRAMAS MODELO-DATOS
 
-![modeDatos](https://github.com/bothan3/-GYM-EnForma/tree/master/imagenes/modeDatos.png)
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/tree/master/imagenes/modeDatos.png)
 
 
 
