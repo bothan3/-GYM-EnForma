@@ -40,9 +40,12 @@ public class ClaseController {
 	
 	@PostConstruct
 	public void init() {
-		for (int i=0; i<5; i++) {
-			claseRepository.save(new Clase("tipo"+i,60,"duracion"+i));
-		} 
+		claseRepository.save(new Clase("Cardio",30,"Baja",3));
+		claseRepository.save(new Clase("Tonificacion",45,"Baja",4));
+		claseRepository.save(new Clase("Baile",45,"Media",6));
+		claseRepository.save(new Clase("Cardio",60,"Media",9));
+		claseRepository.save(new Clase("Tonificacion",60,"Alta",12));
+		claseRepository.save(new Clase("Baile",90,"Alta",13));
 	}
 	
 	//Crea una clase

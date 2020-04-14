@@ -30,7 +30,7 @@ public class Clase {
 	private Date fecha;
 	private int duracion;
 	private String intensidad;
-	private boolean profeosorAsignado;
+	private boolean profeosorAsignado = false;
 
 	@ManyToOne
 	private Profesor profesor;
@@ -51,9 +51,18 @@ public class Clase {
 		calendar.set(Calendar.MONTH, 3);
 		calendar.set(Calendar.DATE, 14);
 		this.fecha = calendar.getTime();
-
 		this.profeosorAsignado = false;
-
+	}	
+	public Clase(String tipo, int duracion, String intensidad, int dia) {
+		this.tipo = tipo;
+		this.duracion = duracion;
+		this.intensidad = intensidad;
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR, 2020);
+		calendar.set(Calendar.MONTH, 3);
+		calendar.set(Calendar.DATE, dia);
+		this.fecha = calendar.getTime();
+		this.profeosorAsignado = false;
 	}
 
 	public void setId(long id) {

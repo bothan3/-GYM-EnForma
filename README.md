@@ -43,3 +43,18 @@ Página web de un gimnasio donde cualquier usuario puede entrar para tener infor
 * **Nombre:** Iván Murillo Expósito
 * **Correo:**<i.murillo@alumnos.urjc.es>
 * **GitHub:** <https://github.com/bothan3/-GYM-EnForma.git>
+
+***
+
+## DIAGRAMA DE NAVEGACIÓN
+
+![mapaNavegacion](https://github.com/bothan3/-GYM-EnForma/tree/master/imagenes/mapaNavegacion.jpg)
+
+***
+
+## DIAGRAMAS MODELO-DATOS
+
+![modeDatos](https://github.com/bothan3/-GYM-EnForma/tree/master/imagenes/modeDatos.png)
+
+
+
