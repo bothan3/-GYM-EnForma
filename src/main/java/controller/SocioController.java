@@ -72,8 +72,7 @@ public class SocioController {
 	}
 	@GetMapping("/listadoSocios/{num}")
 	public String listadoPag(Model model, HttpServletRequest request, Pageable page, @PathVariable int num) {
-		boolean paginacion = true;
-
+		model.addAttribute("paginacion", true);
 		page = PageRequest.of(num, 5);
 		model.addAttribute("socios", socioRepository.findAll(page));
 		if (num == 0) {

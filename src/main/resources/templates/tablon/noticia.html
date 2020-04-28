@@ -2,25 +2,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="/css/styleTablon.css" type="text/css" rel="stylesheet">
+<title>Noticias</title>
+<link href="/css/styleIndex.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<div id="tablon">
-		<div id="titulo">
-			<h1>{{noticia.titulo}}</h1>
+	<div id="cont">
+		<div id="encabezado">
+			<h2>Tablón de noticias</h2>
 		</div>
-		<div id="noticia">
-			<p>{{noticia.texto}}</p>
-			
-			<h2>Comentarios: </h2>
-					
-			{{#comentarios}}
-			<p>AUTOR: {{autor}}<p>
-			<p>{{mensaje}}</p>
-			{{/comentarios}}
+		<div id="contenido">
+			{{#noticias}} <span class="noticia">
+				<h2>{{titulo}} : {{fecha}}</h2>
+				<p>{{texto}}</p>
+				<hr/>
+			</span> {{/noticias}} {{#paginacion}}
+			<div class="contenedorAvanzar">
+				<input class="botom2" type="button"
+					onclick="window.location.href='/tablon/noticia/{{antNum}}'"
+					name="<" value="<"> <input class="botom2" type="button"
+					onclick="window.location.href='/tablon/noticia/{{sigNum}}'"
+					name=">" value=">">
+				</divclass>
+				{{/paginacion}}
+			</div>
 		</div>
-		
-	</div>
+		<div id="menu">
+			<h3>Menu</h3>
+			<ul>
+				<li><a href="/">Home</a></li>
+			</ul>
+		</div>
 </body>
 </html>

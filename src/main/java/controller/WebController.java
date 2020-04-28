@@ -78,5 +78,28 @@ public class WebController {
 	public String loginerror() {
 		return "loginerror";
 	}
+	
+	@GetMapping("/tablon/noticia")
+	public String listarNoticias(Model model, Pageable page) {
+		page = PageRequest.of(0, 5);
+		model.addAttribute("noticias", noticiasRepository.findAll(page));
+		model.addAttribute("paginacion", true);
+		model.addAttribute("antNum", 0);
+		model.addAttribute("sigNum", 1);
+		return "tablon/noticia";	
+	}
+	@GetMapping("/tablon/noticia/{num}")
+	public String listarNoticiasPag(Model model, Pageable page, @PathVariable int num) {
+		page = PageRequest.of(num, 5);
+		model.addAttribute("noticias", noticiasRepository.findAll(page));
+		model.addAttribute("paginacion", true);
+		if (num == 0) {
+			model.addAttribute("antNum", 0);
+		}else {
+			model.addAttribute("antNum",num-1);
+		}
+		model.addAttribute("sigNum", num+1);
+		return "tablon/noticia";	
+	}
 
 }
