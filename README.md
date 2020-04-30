@@ -155,10 +155,10 @@ Aplicación montada en azure con la sigueinte estructura.
 ![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/arquitectura.png)
 
 
-* Balanceador de carga.
+### Balanceador de carga.
 Basado en la técnología de haproxy con la siguiente configuración. 
 
-haproxy.cfg
+* haproxy.cfg
 ~~~
 frontend gymPEF
         bind *:80
@@ -181,7 +181,8 @@ backend gymPEF
 
 Tenemos dos servidores web a los que se redirigirán las peticiones a través de IP interna de la subred.
 
-Cache compartida para accesos a base de datos gestionada por spring.
+### Caches
+* Cache compartida para accesos a base de datos gestionada por spring.
 Configuración CacheManager
 ~~~
     //Configuración de la cache de consultas para reducir el numero de accesos bbdd
@@ -215,7 +216,7 @@ CacheController
 		return cache.getNativeCache();
 	}
 ~~~
-Cache de la sesión gestionada por Hazelcast.
+* Cache de la sesión gestionada por Hazelcast.
 ~~~
 	//Para que Hazelcast pueda conocer el resto de instancias en la misma subred 
 	@Bean
@@ -232,7 +233,7 @@ Cache de la sesión gestionada por Hazelcast.
 
 
 
-* Servidor BBDD.
+### Servidor BBDD.
 Configurado con MySql server, escuchando peticiones de los dos servidores web, configurado a través de los usuarios y sus privilegios.
 
 USER:
@@ -263,7 +264,7 @@ DATABASE:
 +-----------------+
 ~~~
 
-* Servidores web
+### Servidores web
 He creado una imagen de las máquinas virtuales con el objetivo de tener automatizado el proceso de levantamiento en caso de necesidad.
 
 ![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/snapshoot.png)
@@ -280,7 +281,7 @@ java -jar gym.jar --spring.datasource.url="jdbc:mysql://10.0.0.5:3306/gym?autoRe
 - Uso la estrategia none en la actualización de la base de datos
 - Genero un fichero log en modo DEBUG, el cual extraeré con un script.
 
-* Configuración Ansible
+### Configuración Ansible
 Aunque no son muchas máquinas, he instalado una gestión de configuración (ansible) en el servidor que tiene alojado el balanceador.
 
 Inserto los host en el fichero de configuracion /etc/ansible/hosts
@@ -298,6 +299,6 @@ Realizo una comprobación de que todas las instancias web tiene la misma versió
 ![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/versionJava.png)
 
 ***
-* Video explicativo:
+### Video explicativo:
 https://youtu.be/nHnCT8QJG18
 
