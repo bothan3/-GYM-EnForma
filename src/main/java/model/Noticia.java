@@ -1,16 +1,12 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -30,9 +26,6 @@ public class Noticia {
 	@DateTimeFormat(iso = ISO.DATE)
 	private Date fecha;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="articulo")
-	private List<Comentario> comentarios = new ArrayList<>();
-
 	protected Noticia() {}
 
 	public Noticia(String titulo, String texto) {
@@ -45,9 +38,7 @@ public class Noticia {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public void setComentarios(List<Comentario> comentarios) {
-		this.comentarios = comentarios;
-	}
+
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
@@ -64,15 +55,6 @@ public class Noticia {
 	}
 	public String getTexto() {
 		return texto;
-	}
-	public List<Comentario> getComentarios() {
-		return comentarios;
-	}
-	
-	
-	public void addComentario (Comentario comentario) {
-		comentario.setArticulo(this);
-		comentarios.add(comentario);
 	}
 	
 	@Override

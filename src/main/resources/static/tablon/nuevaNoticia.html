@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Noticias</title>
+<link href="/css/styleIndex.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div id="cont">
+		<div id="encabezado">
+			<h2>Espacio noticia</h2>
+		</div>
+		<div id="contenido">
+			<h2>
+				<b>Nueva noticia</b>
+			</h2>
+			<form action="/tablon/insertarNoticia" method="post">
+				<p>	Titulo: 
+					<input type="text" name="titulo" required> 
+				</p>
+				<p>	Texto:  
+					<textarea name="texto"></textarea>
+				</p>
+		
+				<div display=inline-block>
+					<input class='botom2' type="submit" value='Enviar' "/> <input
+						class='botom2' type="reset" value="Borrar">
+				</div>
+			</form>
+
+		</div>
+		<div id="menu">
+			<h3>Menu</h3>
+			<ul>
+				<li><a href="/">Home</a></li>
+			</ul>
+			<ul>
+				<li><a href="/tablon/noticia">Noticias</a></li>
+			</ul>
+		</div>
+</body>
+</html>

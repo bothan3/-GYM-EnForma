@@ -39,22 +39,14 @@ public class ProfesorController {
 	@Autowired
 	private UserRepository userRepository;
 
-	@PostConstruct
-	public void init() {
-		profesorRepository.save(new Profesor("IVAN", "RUIZ", "SOLER", "74364294", "RUIZSOLER@gmail.com"));
-		profesorRepository.save(new Profesor("JOSE", "LUIS", "ROSIQUE", "23023982", "LUISROSIQUE@gmail.com"));
-		profesorRepository.save(new Profesor("MARCO", "ANTONIO", "JIMENEZ", "21492944", "ANTONIOJIMENEZ@gmail.com"));
-		profesorRepository.save(new Profesor("ELENA", "PATERNA", "MORAN", "14312215", "PATERNAMORAN@gmail.com"));
-		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
-		
-		
-		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
-		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
-		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
-		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
-		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
-
-	}
+//	@PostConstruct
+//	public void init() {
+//		profesorRepository.save(new Profesor("IVAN", "RUIZ", "SOLER", "74364294", "RUIZSOLER@gmail.com"));
+//		profesorRepository.save(new Profesor("JOSE", "LUIS", "ROSIQUE", "23023982", "LUISROSIQUE@gmail.com"));
+//		profesorRepository.save(new Profesor("MARCO", "ANTONIO", "JIMENEZ", "21492944", "ANTONIOJIMENEZ@gmail.com"));
+//		profesorRepository.save(new Profesor("ELENA", "PATERNA", "MORAN", "14312215", "PATERNAMORAN@gmail.com"));
+//		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
+//	}
 
 	// Listar todo los profesores
 	@GetMapping("/listadoProfesores")
@@ -107,7 +99,7 @@ public class ProfesorController {
 	@PostMapping("/alta")
 	public String altaUsuario(Model model, Profesor profesor, @RequestParam String password) {
 
-		User usuario = new User(profesor.getNombre(), password, "ROLE_USER", "ROLE_ADMIN");
+		User usuario = new User(profesor.getNombre(), password,"ROLE_ADMIN");
 		profesor.setUsuario(usuario);
 		userRepository.save(usuario);
 		profesorRepository.save(profesor);

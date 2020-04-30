@@ -16,6 +16,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 
 @Entity
+@SessionScope
 public class User {
 	
 	@Id

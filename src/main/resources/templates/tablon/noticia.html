@@ -14,7 +14,7 @@
 			{{#noticias}} <span class="noticia">
 				<h2>{{titulo}} : {{fecha}}</h2>
 				<p>{{texto}}</p>
-				<hr/>
+				<hr />
 			</span> {{/noticias}} {{#paginacion}}
 			<div class="contenedorAvanzar">
 				<input class="botom2" type="button"
@@ -31,6 +31,11 @@
 			<ul>
 				<li><a href="/">Home</a></li>
 			</ul>
+			{{#admin}}
+			<ul>
+			<li><a href="/tablon/nuevaNoticia.html">Añadir noticia</a></li>
+			</ul>
+			{{/admin}}
 		</div>
 </body>
 </html>

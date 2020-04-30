@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Optional;
-
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import model.Clase;
 import model.Noticia;
-import model.Comentario;
+import model.Profesor;
+import model.Socio;
+import model.User;
 
 @Controller
 @EntityScan(basePackages = "model")
@@ -28,18 +30,27 @@ public class WebController {
 
 	@Autowired
 	private NoticiasRepository noticiasRepository;
-
+	
 	@Autowired
-	private ComentarioRepository comentariosRepository;
+	private ProfesorRepository profesorRepository;
+	
+	@Autowired
+	private SocioRepository socioRepository;
+	
+	@Autowired
+	private ClaseRepository claseRepository;
+	
+	@Autowired
+    private UserRepository userRepository;
 
-	@PostConstruct
-	public void init() {
-			noticiasRepository.save(new Noticia("Cierre por COVID-19", "Debido a la situación extraordinaria que estamos sufriendo, el gimnasio cerrará hasta junio."));
-			noticiasRepository.save(new Noticia("Nueva clase de cardio", "Este miercoles a las 18.00 tendremos una clase de cario indoor de spinning en nuestro canal youtube"));
-			noticiasRepository.save(new Noticia("Nueva clase de baile", "Este jueves tendremos una clase de baile en nuestro canal youtube"));
-			noticiasRepository.save(new Noticia("Nueva clase de crossfit", "Este viernes tendremos una crossfit de cario indoor de spinning en nuestro canal youtube"));
-			noticiasRepository.save(new Noticia("Proxima apertura", "Es posible que la apertura del gimnasio se retrase a 2021. Sentimos las molestias"));
-	}
+//	@PostConstruct
+//	public void init() {
+//			noticiasRepository.save(new Noticia("Cierre por COVID-19", "Debido a la situación extraordinaria que estamos sufriendo, el gimnasio cerrará hasta junio."));
+//			noticiasRepository.save(new Noticia("Nueva clase de cardio", "Este miercoles a las 18.00 tendremos una clase de cario indoor de spinning en nuestro canal youtube"));
+//			noticiasRepository.save(new Noticia("Nueva clase de baile", "Este jueves tendremos una clase de baile en nuestro canal youtube"));
+//			noticiasRepository.save(new Noticia("Nueva clase de crossfit", "Este viernes tendremos una crossfit de cario indoor de spinning en nuestro canal youtube"));
+//			noticiasRepository.save(new Noticia("Proxima apertura", "Es posible que la apertura del gimnasio se retrase a 2021. Sentimos las molestias"));
+//	}
 
 	@GetMapping("/")
 	public String mostrarPortada(Model model,  HttpServletRequest request, Pageable page) throws IOException, ServletException {
@@ -56,18 +67,6 @@ public class WebController {
 		return "portada";
 	}
 
-	@GetMapping("/noticia/{id}")
-	public String mostrarPortada(Model model, @PathVariable long id) {
-
-		Optional<Noticia> noticia = noticiasRepository.findById(id);
-
-		if (noticia.isPresent()) {
-			model.addAttribute("noticia", noticia.get());
-			model.addAttribute("comentarios", noticia.get().getComentarios());
-		}
-
-		return "/tablon/noticia";
-	}
 
 	@GetMapping("/login")
 	public String login(Model model, HttpServletRequest request) {
@@ -80,8 +79,9 @@ public class WebController {
 	}
 	
 	@GetMapping("/tablon/noticia")
-	public String listarNoticias(Model model, Pageable page) {
+	public String listarNoticias(Model model, Pageable page, HttpServletRequest request) {
 		page = PageRequest.of(0, 5);
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("noticias", noticiasRepository.findAll(page));
 		model.addAttribute("paginacion", true);
 		model.addAttribute("antNum", 0);
@@ -89,8 +89,9 @@ public class WebController {
 		return "tablon/noticia";	
 	}
 	@GetMapping("/tablon/noticia/{num}")
-	public String listarNoticiasPag(Model model, Pageable page, @PathVariable int num) {
+	public String listarNoticiasPag(Model model, Pageable page, @PathVariable int num, HttpServletRequest request) {
 		page = PageRequest.of(num, 5);
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		model.addAttribute("noticias", noticiasRepository.findAll(page));
 		model.addAttribute("paginacion", true);
 		if (num == 0) {
@@ -101,5 +102,47 @@ public class WebController {
 		model.addAttribute("sigNum", num+1);
 		return "tablon/noticia";	
 	}
-
+	@PostMapping("/tablon/insertarNoticia")
+	public String nuevaNotica (Model model, Noticia noticia) {
+		noticiasRepository.save(noticia);	
+		return "validacion";
+	}
+	
+	@GetMapping("/cargar")
+	public String cargarDatos (Model model) {
+		//Noticias
+		noticiasRepository.save(new Noticia("Cierre por COVID-19", "Debido a la situación extraordinaria que estamos sufriendo, el gimnasio cerrará hasta junio."));
+		noticiasRepository.save(new Noticia("Nueva clase de cardio", "Este miercoles a las 18.00 tendremos una clase de cario indoor de spinning en nuestro canal youtube"));
+		noticiasRepository.save(new Noticia("Nueva clase de baile", "Este jueves tendremos una clase de baile en nuestro canal youtube"));
+		noticiasRepository.save(new Noticia("Nueva clase de crossfit", "Este viernes tendremos una crossfit de cario indoor de spinning en nuestro canal youtube"));
+		noticiasRepository.save(new Noticia("Proxima apertura", "Es posible que la apertura del gimnasio se retrase a 2021. Sentimos las molestias"));
+		
+		//Clases
+		claseRepository.save(new Clase("Cardio",30,"Baja",3));
+		claseRepository.save(new Clase("Tonificacion",45,"Baja",4));
+		claseRepository.save(new Clase("Baile",45,"Media",6));
+		claseRepository.save(new Clase("Cardio",60,"Media",9));
+		claseRepository.save(new Clase("Tonificacion",60,"Alta",12));
+		claseRepository.save(new Clase("Baile",90,"Alta",13));
+		
+		//Usuarios
+		userRepository.save(new User("user", "pass", "ROLE_USER"));
+		userRepository.save(new User("admin", "admin", "ROLE_ADMIN"));
+		
+		//Profesores
+		profesorRepository.save(new Profesor("IVAN", "RUIZ", "SOLER", "74364294", "RUIZSOLER@gmail.com"));
+		profesorRepository.save(new Profesor("JOSE", "LUIS", "ROSIQUE", "23023982", "LUISROSIQUE@gmail.com"));
+		profesorRepository.save(new Profesor("MARCO", "ANTONIO", "JIMENEZ", "21492944", "ANTONIOJIMENEZ@gmail.com"));
+		profesorRepository.save(new Profesor("ELENA", "PATERNA", "MORAN", "14312215", "PATERNAMORAN@gmail.com"));
+		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
+		
+		//Clases
+		socioRepository.save(new Socio("ALFONSO","JOSE","TOBARRA","7550239","JOSETOBARRA@gmail.com"));
+		socioRepository.save(new Socio("MARIA","JOSE","IZQUIERDO","5684469","JOSEIZQUIERDO@gmail.com"));
+		socioRepository.save(new Socio("DANIEL","MUÑOZ","PICON","77722638","MUÑOZPICON@gmail.com"));
+		socioRepository.save(new Socio("LUIS","ANTONIO","DELICADO","21678229","ANTONIODELICADO@gmail.com"));
+		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
+		
+		return "validacion";
+	}
 }

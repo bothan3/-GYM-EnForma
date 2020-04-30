@@ -56,5 +56,97 @@ Página web de un gimnasio donde cualquier usuario puede entrar para tener infor
 
 ![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/modeDatos.png)
 
+## CAPTURAS DE PANTALLA APLICACIÓN
+### Portada:
 
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/portada.png)
+
+Página principal de la aplicación web, donde se muestran las últimas noticias, información y el acceso para loguearte en caso de ser administrador.
+
+### Login:
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/login.png)
+
+Login web, que aparece cuando pulsamos la opción de logearte o cuando se intenta acceder a web privada.
+
+### Tablón de noticias:
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/tablonNoticias.png)
+
+Página donde se muestra todas las noticias de manera paginada.
+
+### Intranet (zona administración):
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/intranetAdmin.png)
+
+Menú intranet, donde se muestra todas las opciones para administrar el gimnasio. Separado por las instancias de socio, profesores y clases.
+
+### Espacio socio:
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/espacioSocio.png)
+
+Espacio socio, donde puedo buscar a los socios según distintos filtros.
+
+### Operaciones socio:
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/listadoSocio.png)
+
+Muestra el listado de socios, según el filtro seleccionado y nos permite hacer las distintas operaciones (modificar, eliminar, apuntar clase y desapuntar clase).
+
+### Alta socio:
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/altaSocio.png)
+
+Formulario donde poder dar de alta un nuevo socio.
+
+### Espacio profesor:
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/espacioProfesor.png)
+
+Espacio profesor, donde puedo buscar a los profesores según distintos filtros.
+
+### Operaciones profesor:
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/listadoProfesor.png)
+
+Muestra el listado de profesores, según el filtro seleccionado y nos permite hacer las distintas operaciones (modificar, eliminar, asignar socio y eliminar un socio asignado).
+
+### Alta profesor:
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/altaProfesor.png)
+
+Formulario donde poder dar de alta un nuevo profesor.
+
+### Espacio clase:
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/espacioClase.png)
+
+Espacio clase, donde puedo buscar las distintas clases según distintos filtros.
+
+### Operaciones clase:
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/listadoClase.png)
+
+Muestra el listado de las clases, según el filtro seleccionado y nos permite hacer las distintas operaciones (modificar, eliminar, asignar profesor y eliminar profesor asignado).
+
+### Crear clase:
+
+![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/crearClase.png)
+
+Formulario donde poder crear una nueva clase.
+
+## FASE 2 - Instrucciones de despliegue
+
+### Requisitos:
+* Java JRE version 8 o superior,
+* MySql server.
+
+### Configuración mysql
+* database name: gym
+* user: admin@localthost
+* password: administrator
+
+## Ejecución en local
+* ejecutar el jar con el comando.
+>java -jar gymPonteEnForma-0.0.1-SNAPSHOT.jar
 

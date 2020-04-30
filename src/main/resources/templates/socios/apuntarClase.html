@@ -49,9 +49,15 @@
 	</div>
 	<div class="contendorEdicion" id="contenedorForm">
 	</div>
+	{{#admin}}
 	<div class="contenedorVolver">
 		<input class="botom1" type="button" onclick="window.location.href='/socios/filtros.html'" name="volver atrás" value="VOLVER">
 	</divclass>
-
+	{{/admin}}
+	{{#user}}
+	<div class="contenedorVolver">
+		<input class="botom1" type="button" onclick="window.location.href='/'" name="volver atrás" value="VOLVER">
+	</divclass>
+	{{/user}}
 </body>
 </html>

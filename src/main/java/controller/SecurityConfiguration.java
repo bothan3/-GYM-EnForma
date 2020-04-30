@@ -19,15 +19,41 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	 http.authorizeRequests().antMatchers("/").permitAll();
 	 http.authorizeRequests().antMatchers("/login").permitAll();
 	 http.authorizeRequests().antMatchers("/logout").permitAll();
+	 http.authorizeRequests().antMatchers("/socios/altaSocio*").permitAll();
 	 http.authorizeRequests().antMatchers("/tablon/noticia/*").permitAll();
 	 http.authorizeRequests().antMatchers("/tablon/noticia").permitAll();
+	 http.authorizeRequests().antMatchers("/validacion").permitAll();
+	 http.authorizeRequests().antMatchers("/socios/alta").permitAll();
+	 http.authorizeRequests().antMatchers("/cargar").permitAll();
+
+
 	 http.authorizeRequests().antMatchers("/**/*.js", "/**/*.css").permitAll();
 	 //http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
 	 
-	 // Private pages (all other pages)
-	 http.authorizeRequests().anyRequest().authenticated();
+	 //Privates pages
+	 //http.authorizeRequests().anyRequest().authenticated();
+	 http.authorizeRequests().antMatchers("/admin.html" ).hasRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/socios/filtros.html" ).hasRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/socios/listadoSocios" ).hasRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/socios/listadoSocios/*" ).hasRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/socios/listadoSocios/*" ).hasRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/socios/listadoSocios/*" ).hasRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/socios/listadoSocios/*" ).hasRole("ADMIN");
 
+	 http.authorizeRequests().antMatchers("/profesores/*").hasRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/profesores/*/*").hasRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/clases/*").hasRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/clases/*/*").hasRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/tablon/nuevaNoticia.html").hasRole("ADMIN");
 
+	 
+	 http.authorizeRequests().antMatchers("/tablon/noticia" ).hasAnyRole("USER","ADMIN");
+	 http.authorizeRequests().antMatchers("/socios/confirmacionSocio*" ).hasRole("USER");
+	 http.authorizeRequests().antMatchers("/socios/busquedaPersonalizada" ).hasAnyRole("USER","ADMIN");
+	 http.authorizeRequests().antMatchers("/socios/apuntarClase/*" ).hasAnyRole("USER","ADMIN");
+	 http.authorizeRequests().antMatchers("/socios/apuntarClase" ).hasAnyRole("USER","ADMIN");	 
+	 http.authorizeRequests().antMatchers("/socios/desapuntarClase/*" ).hasAnyRole("USER","ADMIN");
+	 http.authorizeRequests().antMatchers("/socios/desapuntarClase" ).hasAnyRole("USER","ADMIN");
 	 
 	 // Login form
 	 http.formLogin().loginPage("/login");

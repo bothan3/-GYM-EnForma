@@ -23,7 +23,9 @@
 						<th>CORREO</th>
 						<th>PROFESOR ASIGNADO</th>
 						<th>CLASES APUNTADAS</th>
+						{{#admin}}
 						<th>ACCIONES</th>
+						{{/admin}}
 						<th>OTRAS OPERACIONES</th>
 					</tr>
 				</thead>
@@ -38,11 +40,12 @@
 						<td>{{correo}}</td>
 						<td>{{#profeosrAsignado}}{{profesor}}{{/profeosrAsignado}}</td>
 						<td>{{clases}}</td>
-						
+						{{#admin}}
 						<td>
 							<span class="editar" onclick="transformarEnEditable(this,'socios')"><i class="material-icons">border_color</i></span>
 							<a href="/socios/borrar/{{id}}" style="color:#A73D26"><i class="material-icons">delete</i></span>
 						</td>
+						{{/admin}}
 						<td>
 							<select name="forma" onchange="location = this.value;">
 									<option value="">Acción a realizar..</option>
@@ -66,10 +69,15 @@
 		</div>
 	<div class="contendorEdicion" id="contenedorForm">
 	</div>
-
+	{{#admin}}
 	<div class="contenedorVolver">
 		<input class="botom1" type="button" onclick="window.location.href='/socios/filtros.html'" name="volver atrás" value="VOLVER">
 	</divclass>
-
+	{{/admin}}
+	{{#user}}
+	<div class="contenedorVolver">
+		<input class="botom1" type="button" onclick="window.location.href='/'" name="volver atrás" value="VOLVER">
+	</divclass>
+	{{/user}}
 </body>
 </html>

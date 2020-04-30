@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Confirmación socio</title>
+<link href="/css/styleIndex.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div id="cont">
+		<div id="encabezado">
+			<h2>Espacio Socio</h2>
+		</div>
+		<div id="contenido">
+			<form action="/socios/busquedaPersonalizada" method="post">
+				<p>
+					Confirmacion por dni: <input type="text" name="palabra"> <input
+						type="hidden" name="tipo" value="3"> <input type="submit"
+						value='Buscar'/>
+				</p>
+			</form>
+		</div>
+		<div id="menu">
+			<h3>Menu</h3>
+			<ul>
+				<li><a href="login"><b>Login</b></a></li>
+				<form action="/logout" method="post">
+				<input type="submit" value="Cerrar sesión" />
+				</form>			
+				
+				<li><a href="/">Home</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

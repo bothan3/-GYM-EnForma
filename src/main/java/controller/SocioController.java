@@ -41,27 +41,20 @@ public class SocioController {
 	@Autowired
 	private UserRepository userRepository;
 
-	@PostConstruct
-	public void init() {
-		socioRepository.save(new Socio("ALFONSO","JOSE","TOBARRA","7550239","JOSETOBARRA@gmail.com"));
-		socioRepository.save(new Socio("MARIA","JOSE","IZQUIERDO","5684469","JOSEIZQUIERDO@gmail.com"));
-		socioRepository.save(new Socio("DANIEL","MUÑOZ","PICON","77722638","MUÑOZPICON@gmail.com"));
-		socioRepository.save(new Socio("LUIS","ANTONIO","DELICADO","21678229","ANTONIODELICADO@gmail.com"));
-		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
-		
-		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
-		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
-		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
-		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
-		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
-
-		
-	}
+//	@PostConstruct
+//	public void init() {
+//		socioRepository.save(new Socio("ALFONSO","JOSE","TOBARRA","7550239","JOSETOBARRA@gmail.com"));
+//		socioRepository.save(new Socio("MARIA","JOSE","IZQUIERDO","5684469","JOSEIZQUIERDO@gmail.com"));
+//		socioRepository.save(new Socio("DANIEL","MUÑOZ","PICON","77722638","MUÑOZPICON@gmail.com"));
+//		socioRepository.save(new Socio("LUIS","ANTONIO","DELICADO","21678229","ANTONIODELICADO@gmail.com"));
+//		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
+//	}
 
 	//Nos devueleve el listaod completo de socios
 	@GetMapping("/listadoSocios")
 	public String listado(Model model, HttpServletRequest request, Pageable page) {
-
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 		
 		page = PageRequest.of(0, 5);		
 		model.addAttribute("socios", socioRepository.findAll(page));
@@ -72,6 +65,9 @@ public class SocioController {
 	}
 	@GetMapping("/listadoSocios/{num}")
 	public String listadoPag(Model model, HttpServletRequest request, Pageable page, @PathVariable int num) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
+		
 		model.addAttribute("paginacion", true);
 		page = PageRequest.of(num, 5);
 		model.addAttribute("socios", socioRepository.findAll(page));
@@ -179,8 +175,10 @@ public class SocioController {
 //	}
 	//Busqueda según criterio
 	@PostMapping("/busquedaPersonalizada")
-	public String busquedaPersonanlizada(Model model, Busqueda busqueda) {
+	public String busquedaPersonanlizada(Model model, HttpServletRequest request, Busqueda busqueda) {
 		model.addAttribute("paginacion", false);
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 		
 		switch (busqueda.getTipo()) {
 		case 1:
@@ -207,7 +205,9 @@ public class SocioController {
 
 	//Cargamos la lista de clases para apuntarse
 	@GetMapping("/apuntarClase/{idSocio}")
-	public  String apuntarClase (Model model, @PathVariable long idSocio ) {
+	public  String apuntarClase (Model model, @PathVariable long idSocio, HttpServletRequest request ) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 		
 		model.addAttribute("socio", socioRepository.findById(idSocio).get());
 		model.addAttribute("clases", claseRepository.findAll());
@@ -218,7 +218,7 @@ public class SocioController {
 
 	//Añadimos una clase y socio en ambas bases de datos.
 	@PostMapping("/apuntarClase")
-	public  String apuntarClase (Model model, long idClase, long idSocio) {
+	public  String apuntarClase (Model model, long idClase, long idSocio, HttpServletRequest request) {
 		
 		Optional<Clase> clase = claseRepository.findById(idClase);
 		Optional<Socio> socio = socioRepository.findById(idSocio);
@@ -241,7 +241,9 @@ public class SocioController {
 	
 	//Cargamos la lista de clases para apuntarse
 	@GetMapping("/desapuntarClase/{idSocio}")
-	public  String desapuntarClase (Model model, @PathVariable long idSocio ) {
+	public  String desapuntarClase (Model model, @PathVariable long idSocio , HttpServletRequest request) {
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 		
 		model.addAttribute("socio", socioRepository.findById(idSocio).get());
 		model.addAttribute("clases", socioRepository.findById(idSocio).get().getClases());
@@ -268,6 +270,4 @@ public class SocioController {
 		model.addAttribute("ruta", "socios");
 		return "validacion";
 	}
-	
-	
 }
