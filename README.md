@@ -181,6 +181,57 @@ backend gymPEF
 
 Tenemos dos servidores web a los que se redirigirán las peticiones a través de IP interna de la subred.
 
+Cache compartida para accesos a base de datos gestionada por spring.
+Configuración CacheManager
+~~~
+    //Configuración de la cache de consultas para reducir el numero de accesos bbdd
+    @Bean
+    public CacheManager cacheManager() {
+    	LOG.info("Activating cache...");
+    	return new ConcurrentMapCacheManager("socio","profesor","clase");
+    }
+~~~
+CacheController
+~~~
+	@Autowired
+	private CacheManager cacheManager;
+	
+	@RequestMapping(value="/cache/socio", method=RequestMethod.GET)
+	public Map<Object, Object> getCacheContentSocio() {
+		ConcurrentMapCacheManager cacheMgr = (ConcurrentMapCacheManager) cacheManager;
+		ConcurrentMapCache cache = (ConcurrentMapCache) cacheMgr.getCache("socio");
+		return cache.getNativeCache();
+	}
+	@RequestMapping(value="/cache/profesor", method=RequestMethod.GET)
+	public Map<Object, Object> getCacheContentProfesor() {
+		ConcurrentMapCacheManager cacheMgr = (ConcurrentMapCacheManager) cacheManager;
+		ConcurrentMapCache cache = (ConcurrentMapCache) cacheMgr.getCache("profesor");
+		return cache.getNativeCache();
+	}
+	@RequestMapping(value="/cache/clase", method=RequestMethod.GET)
+	public Map<Object, Object> getCacheContentClase() {
+		ConcurrentMapCacheManager cacheMgr = (ConcurrentMapCacheManager) cacheManager;
+		ConcurrentMapCache cache = (ConcurrentMapCache) cacheMgr.getCache("clase");
+		return cache.getNativeCache();
+	}
+~~~
+Cache de la sesión gestionada por Hazelcast.
+~~~
+	//Para que Hazelcast pueda conocer el resto de instancias en la misma subred 
+	@Bean
+	public Config config() {
+		Config config = new Config();
+		JoinConfig joinConfig = config.getNetworkConfig().getJoin();
+		joinConfig.getMulticastConfig().setEnabled(false);
+		//Se añade la instancia en el sesion distribuida
+		joinConfig.getTcpIpConfig().setEnabled(true).setMembers(Collections.singletonList("127.0.0.1"));
+		
+		return config;
+	}
+~~~
+
+
+
 * Servidor BBDD.
 Configurado con MySql server, escuchando peticiones de los dos servidores web, configurado a través de los usuarios y sus privilegios.
 
