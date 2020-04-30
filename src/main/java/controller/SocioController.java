@@ -104,16 +104,20 @@ public class SocioController {
 
 	//Da de alta un usuario y su user
 	@PostMapping("/alta")
-	public String altaUsuario(Model model, Socio socio, @RequestParam String password) {
+	public String altaUsuario(Model model, Socio socio,@RequestParam String user, @RequestParam String password) {
 
-		socioRepository.save(socio);
-		
-		User usuario = new User(socio.getNombre(), password, "ROLE_USER");
-		socio.setUsuario(usuario);
-		userRepository.save(usuario);
-		model.addAttribute("ruta", "socios");
-
-		return "validacion";
+		if (userRepository.findByNameIgnoreCase(user) == null) {
+			User usuario = new User(user, password, "ROLE_USER");
+			socioRepository.save(socio);
+			socio.setUsuario(usuario);
+			userRepository.save(usuario);
+			model.addAttribute("ruta", "socios");
+	
+			return "validacion";
+		}else {
+			model.addAttribute("mensaje", "Este usuario esta ya en uso, inserta otro por favor");
+			return "error";
+		}
 	}
 	
 	//Borra un usuario de la base de datos y sus relaciones

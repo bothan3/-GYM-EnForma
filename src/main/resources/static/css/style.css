@@ -80,7 +80,7 @@ form label {
 	display: inline-block;
 }
 
-form input[type="text"], form input[type="email"] {
+form input[type="text"], form input[type="email"],form input[type="password"] {
 	width: 90%;
 	padding: 3px 10px;
 	border: 1px solid #f6f6f6;

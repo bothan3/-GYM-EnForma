@@ -97,15 +97,20 @@ public class ProfesorController {
 
 	// Alta de un nuevo profesor en la base de datos y su user
 	@PostMapping("/alta")
-	public String altaUsuario(Model model, Profesor profesor, @RequestParam String password) {
-
-		User usuario = new User(profesor.getNombre(), password,"ROLE_ADMIN");
-		profesor.setUsuario(usuario);
-		userRepository.save(usuario);
-		profesorRepository.save(profesor);
-		model.addAttribute("ruta", "profesores");
-
-		return "validacion";
+	public String altaUsuario(Model model, Profesor profesor,@RequestParam String user, @RequestParam String password) {
+		
+		if (userRepository.findByNameIgnoreCase(user) == null) {
+			User usuario = new User(user, password,"ROLE_ADMIN");
+			profesor.setUsuario(usuario);
+			userRepository.save(usuario);
+			profesorRepository.save(profesor);
+			model.addAttribute("ruta", "profesores");
+	
+			return "validacion";
+		}else {
+			model.addAttribute("mensaje", "Este usuario esta ya en uso, inserta otro por favor");
+			return "error";
+		}
 	}
 
 	// Borrar Profesor y sus relaciones en las otra entidades

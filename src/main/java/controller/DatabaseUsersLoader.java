@@ -10,13 +10,13 @@ import model.User;
 @Component
 public class DatabaseUsersLoader {
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-//    @PostConstruct
-//    private void initDatabase() {
-//    	userRepository.save(new User("user", "pass", "ROLE_USER"));
-//		userRepository.save(new User("admin", "admin", "ROLE_ADMIN"));
-//    }
+	@PostConstruct
+	private void initDatabase() {
+		//userRepository.save(new User("user", "pass", "ROLE_USER"));
+		//userRepository.save(new User("admin", "admin", "ROLE_ADMIN"));
+	}
 
 }

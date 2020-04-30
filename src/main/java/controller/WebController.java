@@ -110,12 +110,22 @@ public class WebController {
 	
 	@GetMapping("/cargar")
 	public String cargarDatos (Model model) {
+		//Borro la informacion de la base de datos
+		noticiasRepository.deleteAll();
+		claseRepository.deleteAll();
+		socioRepository.deleteAll();
+		profesorRepository.deleteAll();
+		userRepository.deleteAll();
+		
+		//Inserto la información
 		//Noticias
 		noticiasRepository.save(new Noticia("Cierre por COVID-19", "Debido a la situación extraordinaria que estamos sufriendo, el gimnasio cerrará hasta junio."));
 		noticiasRepository.save(new Noticia("Nueva clase de cardio", "Este miercoles a las 18.00 tendremos una clase de cario indoor de spinning en nuestro canal youtube"));
 		noticiasRepository.save(new Noticia("Nueva clase de baile", "Este jueves tendremos una clase de baile en nuestro canal youtube"));
 		noticiasRepository.save(new Noticia("Nueva clase de crossfit", "Este viernes tendremos una crossfit de cario indoor de spinning en nuestro canal youtube"));
 		noticiasRepository.save(new Noticia("Proxima apertura", "Es posible que la apertura del gimnasio se retrase a 2021. Sentimos las molestias"));
+		noticiasRepository.save(new Noticia("Proxima master class", "El día de la apertura tendremos una master class de spinning"));
+
 		
 		//Clases
 		claseRepository.save(new Clase("Cardio",30,"Baja",3));
@@ -130,18 +140,18 @@ public class WebController {
 		userRepository.save(new User("admin", "admin", "ROLE_ADMIN"));
 		
 		//Profesores
-		profesorRepository.save(new Profesor("IVAN", "RUIZ", "SOLER", "74364294", "RUIZSOLER@gmail.com"));
-		profesorRepository.save(new Profesor("JOSE", "LUIS", "ROSIQUE", "23023982", "LUISROSIQUE@gmail.com"));
-		profesorRepository.save(new Profesor("MARCO", "ANTONIO", "JIMENEZ", "21492944", "ANTONIOJIMENEZ@gmail.com"));
-		profesorRepository.save(new Profesor("ELENA", "PATERNA", "MORAN", "14312215", "PATERNAMORAN@gmail.com"));
-		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966", "FERNANDEZMONTALVO@gmail.com"));
+		profesorRepository.save(new Profesor("IVAN", "RUIZ", "SOLER", "74364294A", "RUIZSOLER@gmail.com"));
+		profesorRepository.save(new Profesor("JOSE", "LUIS", "ROSIQUE", "23023982A", "LUISROSIQUE@gmail.com"));
+		profesorRepository.save(new Profesor("MARCO", "ANTONIO", "JIMENEZ", "21492944A", "ANTONIOJIMENEZ@gmail.com"));
+		profesorRepository.save(new Profesor("ELENA", "PATERNA", "MORAN", "14312215A", "PATERNAMORAN@gmail.com"));
+		profesorRepository.save(new Profesor("ALBERT", "FERNANDEZ", "MONTALVO", "74366966A", "FERNANDEZMONTALVO@gmail.com"));
 		
-		//Clases
-		socioRepository.save(new Socio("ALFONSO","JOSE","TOBARRA","7550239","JOSETOBARRA@gmail.com"));
-		socioRepository.save(new Socio("MARIA","JOSE","IZQUIERDO","5684469","JOSEIZQUIERDO@gmail.com"));
-		socioRepository.save(new Socio("DANIEL","MUÑOZ","PICON","77722638","MUÑOZPICON@gmail.com"));
-		socioRepository.save(new Socio("LUIS","ANTONIO","DELICADO","21678229","ANTONIODELICADO@gmail.com"));
-		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716","CRESPOSALMERON@gmail.com"));
+		//Socios
+		socioRepository.save(new Socio("ALFONSO","JOSE","TOBARRA","7550239A","JOSETOBARRA@gmail.com"));
+		socioRepository.save(new Socio("MARIA","JOSE","IZQUIERDO","5684469A","JOSEIZQUIERDO@gmail.com"));
+		socioRepository.save(new Socio("DANIEL","MUÑOZ","PICON","77722638A","MUÑOZPICON@gmail.com"));
+		socioRepository.save(new Socio("LUIS","ANTONIO","DELICADO","21678229A","ANTONIODELICADO@gmail.com"));
+		socioRepository.save(new Socio("DIEGO","CRESPO","SALMERON","75246716A","CRESPOSALMERON@gmail.com"));
 		
 		return "validacion";
 	}
