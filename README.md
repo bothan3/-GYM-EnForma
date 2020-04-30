@@ -3,35 +3,31 @@
 ## TEMÁTICA
 
 
-Página web de un gimnasio donde cualquier usuario puede entrar para tener información sobre el gimnasio. Además de realizar las siguientes funciones.
+Página web de un gimnasio donde cualquier usuario puede entrar para obtener información, además de realizar las siguientes funciones.
 
 
 ### Públicas
 
 
 * **Alta online socio**: usuario puede darse de alta a través de un formulario.
-* **Centros**: Datos de contacto y ubicación de cada gimnsio
+* **Centros**: Datos de contacto y ubicación de cada gimnsio.
 * **Clases**: Listado de todas las clases, profesor que la imparte, tipo y nivel.
 * **Noticias:** Tablón donde se mostrará toda la información relacionada con el gimansio.
 
 ### PRIVADA
 * **Gestiones socio**: Modificar datos, eliminar de la base de datos y asignar un profesor.
 * **Gestiones profesor**: Modificar datos, dar de alta un nuevo profesor, eliminarlo y asignar socios.
-* **Gestiones clases**: Crear clases, eliminar clases, asignar profesor que la va a impartiry gestionar socios participantess.
-* **Reservar clases colectivas**: Espacio para miembros del gimnasio donde prodan reservar las clases de la semana (socios).
-
+* **Gestiones clases**: Crear clases, eliminar clases, asignar un profesor que va a impartir cada clase y gestionar socios participantess.
+* **Reservar clases colectivas**: Espacio para miembros del gimnasio donde puedan reservar las clases de la semana (socios).
 
 ***
 
 ### ENTIDADES PRINCIPALES
 
-* **Socio:** Entidad encargada de todas los datos y operaciones de los socios del gimnasio.
-* **Profesor:** Entidad encargada de todas los datos y operaciones de los profesores del gimnasio.
-* **Clase:** Entidad encargada de todas los datos y operaciones de las clases del gimnasio.
-* **Noticia:** Entidad encargada de todas los datos y operaciones de las noticias del gimnasio.
-* **Comentario:** Entidad encargada de la gestión los comentarios de las noticias de los socios.
-
-
+* **Socio:** Entidad encargada de todos los datos y operaciones de los socios del gimnasio.
+* **Profesor:** Entidad encargada de todos los datos y operaciones de los profesores del gimnasio.
+* **Clase:** Entidad encargada de todos los datos y operaciones de las clases del gimnasio.
+* **Noticia:** Entidad encargada de todos los datos y operaciones de las noticias del gimnasio.
 
 ***
 
@@ -90,7 +86,7 @@ Espacio socio, donde puedo buscar a los socios según distintos filtros.
 
 ![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/listadoSocio.png)
 
-Muestra el listado de socios, según el filtro seleccionado y nos permite hacer las distintas operaciones (modificar, eliminar, apuntar clase y desapuntar clase).
+Muestra el listado de socios, según el filtro seleccionado y nos permite hacer las distintas operaciones (modificar, eliminar, apuntarse a una clase y desapuntarse de una clase).
 
 ### Alta socio:
 
@@ -105,7 +101,7 @@ Formulario donde poder dar de alta un nuevo socio.
 Espacio profesor, donde puedo buscar a los profesores según distintos filtros.
 
 ### Operaciones profesor:
-
+sobre el gimnasio
 ![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/listadoProfesor.png)
 
 Muestra el listado de profesores, según el filtro seleccionado y nos permite hacer las distintas operaciones (modificar, eliminar, asignar socio y eliminar un socio asignado).
@@ -139,7 +135,7 @@ Formulario donde poder crear una nueva clase.
 ## FASE 2 - Instrucciones de despliegue
 
 ### Requisitos:
-* Java JRE version 8 o superior,
+* Java JRE versión 8 o superior,
 * MySql server.
 
 ### Configuración mysql
@@ -160,7 +156,7 @@ Aplicación montada en azure con la sigueinte estructura.
 
 
 * Balanceador de carga.
-Basado en la técnología de haproxy con la siguiente configuracion 
+Basado en la técnología de haproxy con la siguiente configuración. 
 
 haproxy.cfg
 ~~~
@@ -183,10 +179,10 @@ backend gymPEF
         server web2 10.0.0.7:8080  check cookie s2
 ~~~
 
-Tenemos dos servidores web a los que se redirigiran las peticiones a través de IP interna de la subred
+Tenemos dos servidores web a los que se redirigirán las peticiones a través de IP interna de la subred.
 
 * Servidor BBDD.
-Configurado con MySql server, escuchando peticiones de los dos servidores web, configurado a traves de los usuarios y sus privilegios.
+Configurado con MySql server, escuchando peticiones de los dos servidores web, configurado a través de los usuarios y sus privilegios.
 
 USER:
 ~~~ 
@@ -221,7 +217,7 @@ He creado una imagen de las máquinas virtuales con el objetivo de tener automat
 
 ![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/snapshoot.png)
 
-Creo un bash para ejecutar la instacion java con las opciones incluidas de spring.
+Creo un bash para ejecutar la instalación java con las opciones incluídas de spring.
 ~~~
 #!/bin/bash
 echo Desplegando instancia web.
@@ -230,11 +226,11 @@ java -jar gym.jar --spring.datasource.url="jdbc:mysql://10.0.0.5:3306/gym?autoRe
 
 ~~~
 - Inserto la ip interna del servidor MySql 
-- Uso la estategia none en la actualización de la base de datos
+- Uso la estrategia none en la actualización de la base de datos
 - Genero un fichero log en modo DEBUG, el cual extraeré con un script.
 
-* Configuracion Ansible
-Aunque no son muchas maquinas, he instalado un gestión de configuración (ansible) en el servidor que tiene alojado el balanceador
+* Configuración Ansible
+Aunque no son muchas máquinas, he instalado una gestión de configuración (ansible) en el servidor que tiene alojado el balanceador.
 
 Inserto los host en el fichero de configuracion /etc/ansible/hosts
 ~~~
@@ -243,12 +239,13 @@ Inserto los host en el fichero de configuracion /etc/ansible/hosts
 10.0.0.7
 ~~~~
 
-Copia la clave privada y modifico los permisos para poder  conectarme por ssh al resto de maquinas.
+Copio la clave privada y modifico los permisos para poder conectarme por ssh al resto de máquinas.
 > scp -i ~/.ssh/id_rsa /home/bothan/.ssh/id_rsa azureuser@balanceadorgym.eastus.cloudapp.azure.com:/home/azureuser/.ssh/
 
-Realiza una comprobación de que todas las instancias web tiene la misma versión de java 
+Realizo una comprobación de que todas las instancias web tiene la misma versión de java. 
 > ansible all -m shell -a "java -version" --private-key ~/.ssh/id_rsa
 ![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/versionJava.png)
 
-
+***
+![Fotos en imagenes](https://youtu.be/nHnCT8QJG18)
 
