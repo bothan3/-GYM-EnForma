@@ -247,5 +247,6 @@ Realizo una comprobación de que todas las instancias web tiene la misma versió
 ![Fotos en imagenes](https://github.com/bothan3/-GYM-EnForma/blob/master/imagenes/versionJava.png)
 
 ***
-![Fotos en imagenes](https://youtu.be/nHnCT8QJG18)
+* Video explicativo:
+https://youtu.be/nHnCT8QJG18
 
